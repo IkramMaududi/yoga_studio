@@ -11,9 +11,9 @@ function App() {
     <>
       <Navbar/>
       <Router>
-        <Route path="/" exact render={() => <Home/>} /> 
+        <Route path="/"         exact render={() => <Home/>} /> 
         <Route path="/register" exact render={() => <Register/>} /> 
-        <Route path="/login" exact render={() => <Login/>} /> 
+        <Route path="/login"    exact render={() => <Login/>} /> 
       </Router>
     </>
   );
