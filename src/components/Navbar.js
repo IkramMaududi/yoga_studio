@@ -1,37 +1,58 @@
 import React, {useEffect, useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
+
+    // logout functionality
+    let history = useHistory();
+    const logout = () => {
+        // console.log('try to logout');
+        localStorage.clear();
+        history.push('/login');
+    };    
+    
     //toggle loggedIn value in local storage
     const [loggedIn, setLoggedIn] = useState(false);
     let condition = localStorage.getItem('loggedIn');
-    useEffect( () => { setLoggedIn(condition) }, [condition] );
+    useEffect( () => { 
+        // console.log(condition);
+        setLoggedIn(condition);
+        // console.log(loggedIn);
+    }, [condition] );
 
-    //logout function
-    let history = useHistory();
-    const logout = () => {
-        localStorage.clear();
-        history.push('/login');
-    }; 
-
+    const navStyle = {
+        color: 'white'
+    };
 
     return (
-        <div className="Navbar">
-            <a href="/">Home</a>
+        <nav>
+            <Link style={navStyle} to='/'>Home</Link>
             {loggedIn ? (
-                <>
-                    <a href="/profile">Profile</a>
-                    <button onClick={()=>logout}>log out</button>
-                </>
+                <ul className='nav-link'>
+                    <Link style={navStyle} to='/profile'>
+                        <li>profile</li>
+                    </Link>
+                    <Link style={navStyle} to='/game'>
+                        <li>game</li>
+                    </Link>
+                    <button onClick={logout}>log out</button>
+                </ul>
             ) : (
-                <>
-                    <a href="/register">Register</a>
-                    <a href="/login">Login</a>
-                </>
-            ) }
-        </div>
-    )
+                <ul className='nav-link'>
+                    <Link style={navStyle} to='/about'>
+                        <li>About</li>
+                    </Link>
+                    <Link style={navStyle} to='/register'>
+                        <li>register</li>
+                    </Link>
+                    <Link style={navStyle} to='/login'>
+                        <li>login</li>
+                    </Link>
+                </ul>
+            )}
+        </nav>
+    );
 };
 
 export default Navbar;
