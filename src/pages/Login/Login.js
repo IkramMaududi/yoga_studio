@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import './Login.css';
 import Axios from 'axios';
-import {useHistory} from 'react-router-dom';
+// import {useHistory} from 'react-router-dom';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    let history = useHistory();
+    // let history = useHistory();
 
     const login = async (e) => {
         e.preventDefault();
@@ -18,7 +18,8 @@ function Login() {
             if(response.data.loggedIn) {
                 localStorage.setItem('loggedIn', true);
                 localStorage.setItem('username', response.data.username); 
-                history.push('/');
+                window.location = '/';
+                // history.push('/');
             } else {
                 setErrorMessage(response.data.message);
             };

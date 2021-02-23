@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
 
     // logout functionality
-    let history = useHistory();
+    // let history = useHistory();
     const logout = () => {
         // console.log('try to logout');
         localStorage.clear();
-        history.push('/login');
+        // forceUpdate();
+        // history.push('/login');
+        window.location = '/';
     };    
     
     //toggle loggedIn value in local storage
     const [loggedIn, setLoggedIn] = useState(false);
     let condition = localStorage.getItem('loggedIn');
+    console.log(condition);
     useEffect( () => { 
         // console.log(condition);
         setLoggedIn(condition);
@@ -28,7 +31,7 @@ function Navbar() {
     return (
         <nav>
             <Link style={navStyle} to='/'>Home</Link>
-            {loggedIn ? (
+            {loggedIn === 'true' ? (
                 <ul className='nav-link'>
                     <Link style={navStyle} to='/profile'>
                         <li>profile</li>
