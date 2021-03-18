@@ -1,11 +1,16 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home/Home';
-import Register from './pages/Register/Register';
-import Login from './pages/Login/Login';
-import About from './pages/About/About';
-import Game from './pages/Game/Game';
-import Profile from './pages/Profile/Profile';
+import Home from './pages/Home-About/Home';
+import About from './pages/Home-About/About';
+import Register from './pages/Credentials/Register';
+import Login from './pages/Credentials/Login';
+import MonsterKiller from './pages/Games/MonsterKiller';
+import JanKenPon from './pages/Games/JanKenPon';
+import ShowProfile from './pages/Profile/ShowProfile';
+import EditProfile from './pages/Profile/EditProfile';
+import UploadArtWork from './pages/ArtWork/UploadArtWork';
+import ShowArtWork from './pages/ArtWork/ShowArtWork';
+import NotFound from './pages/NotFound/NotFound';
 import './App.css';
 
 function App() {
@@ -18,8 +23,13 @@ function App() {
           <Route path="/about" component={About} /> 
           <Route path="/register" component={Register} /> 
           <Route path="/login" component={Login} /> 
-          <Route path="/profile" component={Profile} />
-          <Route path="/game" component={Game} /> 
+          <Route path="/editprofile" component={EditProfile} />
+          <Route path="/showprofile" component={ShowProfile} />
+          <Route path="/monsterkiller" component={MonsterKiller} />
+          <Route path="/jankenpon" component={JanKenPon} />
+          <Route path="/uploadartwork" component={UploadArtWork} /> 
+          <Route path="/showartwork" component={ShowArtWork} /> 
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>

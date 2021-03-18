@@ -5,23 +5,16 @@ import './Navbar.css';
 function Navbar() {
 
     // logout functionality
-    // let history = useHistory();
     const logout = () => {
-        // console.log('try to logout');
         localStorage.clear();
-        // forceUpdate();
-        // history.push('/login');
         window.location = '/';
     };    
     
     //toggle loggedIn value in local storage
     const [loggedIn, setLoggedIn] = useState(false);
     let condition = localStorage.getItem('loggedIn');
-    console.log(condition);
     useEffect( () => { 
-        // console.log(condition);
         setLoggedIn(condition);
-        // console.log(loggedIn);
     }, [condition] );
 
     const navStyle = {
@@ -33,11 +26,23 @@ function Navbar() {
             <Link style={navStyle} to='/'>Home</Link>
             {loggedIn === 'true' ? (
                 <ul className='nav-link'>
-                    <Link style={navStyle} to='/profile'>
-                        <li>profile</li>
+                    <Link style={navStyle} to='/editprofile'>
+                        <li>Edit Profile</li>
                     </Link>
-                    <Link style={navStyle} to='/game'>
-                        <li>game</li>
+                    <Link style={navStyle} to='/showprofile'>
+                        <li>Show Profile</li>
+                    </Link>
+                    <Link style={navStyle} to='/uploadartwork'>
+                        <li>Upload Art Work</li>
+                    </Link>
+                    <Link style={navStyle} to='/showartwork'>
+                        <li>Show Art Work</li>
+                    </Link>
+                    <Link style={navStyle} to='/monsterkiller'>
+                        <li>Monster Killer</li>
+                    </Link>
+                    <Link style={navStyle} to='/jankenpon'>
+                        <li>Jan Ken Pon</li>
                     </Link>
                     <button onClick={logout}>log out</button>
                 </ul>
