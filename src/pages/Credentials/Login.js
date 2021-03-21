@@ -1,44 +1,53 @@
 import React, {useState} from 'react';
-import './Login.css';
 import Axios from 'axios';
+import './Credentials.css';
 
 function Login() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    // data to be sent & its destination
+    const [values, setValues] = useState({
+        username: '',
+        password: ''
+    });
+    const url = 'http://localhost:3001/user/login';
 
-    // functions for submit button & input change
-    const usernameChange = e => setUsername(e.target.value);
-    const passwordChange = e => setPassword(e.target.value);
-    const loginClick = async (e) => {
+    // error or successful message
+    const [message, setMessage] = useState('');
+
+    // functions for change in value & submit value
+    const handleChange = e => {
+        const {name, value} = e.target;
+        setValues({
+            ...values, 
+            [name]: value
+        });
+    };
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await Axios.post('http://localhost:3001/user/login', {
-                username, password
-            });
+            const response = await Axios.post( url, values );
             if(response.data.loggedIn) {
                 localStorage.setItem('loggedIn', true);
                 localStorage.setItem('username', response.data.username); 
+                setMessage(response.data.message);
                 window.location = '/';
             } else {
-                setErrorMessage(response.data.message);
+                setMessage(response.data.message);
             };
-            console.log(response);
         } catch (err) {
             console.error(err.message);
         };
     };
 
     return (
-        <div className="Login">
+        <div className="Credentials">
             <h1>Login</h1>
-            <div className="LoginForm">
-                <input type='text' placeholder='Username' onChange={usernameChange} />
-                <input type='password' placeholder='Password' onChange={passwordChange} />
-                <button onClick={loginClick}>Login</button>
-                <h1 style={{color:"red"}}>{errorMessage}</h1>
+            <div className="CredentialsForm">
+                <input type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
+                <input type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
+                <input type="submit" value="Login" onClick={handleSubmit} />
+                <h1 style={{color:"red"}}>{message}</h1>
             </div>
-        </div>
+        </div> 
     );
 };
 

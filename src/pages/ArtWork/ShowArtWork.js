@@ -36,12 +36,10 @@ function ShowArtWork() {
 
     // something is off over here
     return (
-        // <div>will show something here</div>
         <div className="Portfolio">
-            {/* say something broo.. */}
-            {downloads.map((val) => {
+            {downloads.map((val, index) => {
                 return (
-                    <div className="Post">
+                    <div key={index} className="Post">
                         <div className="Image">
                             <img src={`data:image/png;base64, ${arrayBufferToBase64(val.image.data)}`} alt="list of images" />
                         </div>
@@ -52,7 +50,6 @@ function ShowArtWork() {
                     </div>
                 );
             })}
-            {/* {downloads} */}
         </div>
     );
 };
