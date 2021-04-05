@@ -26,16 +26,16 @@ function Navbar() {
             <Link style={navStyle} to='/'>Home</Link>
             {loggedIn === 'true' ? (
                 <ul className='nav-link'>
-                    <Link style={navStyle} to='/editprofile'>
+                    <Link style={navStyle} to='/edit-profile'>
                         <li>Edit Profile</li>
                     </Link>
-                    <Link style={navStyle} to='/showprofile'>
+                    <Link style={navStyle} to='/show-profile'>
                         <li>Show Profile</li>
                     </Link>
-                    <Link style={navStyle} to='/uploadartwork'>
+                    <Link style={navStyle} to='/upload-artwork'>
                         <li>Upload Art Work</li>
                     </Link>
-                    <Link style={navStyle} to='/showartwork'>
+                    <Link style={navStyle} to='/show-artwork'>
                         <li>Show Art Work</li>
                     </Link>
                     <Link style={navStyle} to='/monsterkiller'>

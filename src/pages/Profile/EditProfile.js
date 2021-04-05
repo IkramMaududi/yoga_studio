@@ -1,98 +1,131 @@
-import React, {useState} from 'react';
-import Axios from 'axios';
-import './EditProfile.css';
+import React, { useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+// import Axios from 'axios';
+import './EditProfile.css';;
 
-function EditProfile() {
-    // if the user has never filled his/her profile before, then start from empty
-    // const [values, setValues] = ({
-    //     name: '',
-    //     email: '',
-    //     phone: '',
-    //     age: '',
-    //     birthdate: '',
-    //     artstyle: '',
-    //     gender: '',
-    //     bio: ''
-    // });
+function ProfileEdit() {
+/*  // check whether the user has ever filled the profile before
+    const url = 'http://localhost:3001/user/profile';
+    const [profile, setProfile] = useState();
+    useEffect( () => {
+        const username = localStorage.getItem('username');
+        const getData = async () => {
+            await Axios
+                    .get(url, { headers: {username} })
+                    .then(res => setProfile(res.data))
+        };
+        getData();
+    }, []);
 
-    // const [avatar, setAvatar] = useState('');
+    // if the user's profile exists in DB, then it's patch profile, else it's fill profile
+    if (!profile) {
+        // here fill the profile for the first time
+    } else {
+        // here edit the profile
+    }; */
 
-    // // if the user has filled his/profile before, then get the data from the DB
+    // intial value
+    const INITIALVALUE = {
+        name: '',
+        age: '',
+        email: '',
+        phone: '',
+        location: '',
+        gender: '',
+        artStyle: 'traditional',
+        bio: ''
+    };
 
+    // state of the page
+    const [values, setValues] = useState(INITIALVALUE);
+    const [avatar, setAvatar] = useState('');
 
+    // functions for change in value & submit value
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setValues({
+            ...values,
+            [name]: value
+        });
+    };
+    const fileSelectChange = e => { setAvatar(e.target.files[0]) };
+    const handleClick = e => {
+        e.preventDefault(); 
+        setAvatar('');
+        setValues(INITIALVALUE);
+    };
 
+    // function for validating form, before sending to backend
+    // const validation = e => {
+    // };
 
-
-    // // this is the data to be sent
-    // const fd = new FormData();
-    // fd.append('avatar', avatar);
-    // fd.append('values', values);
-
-    // const url = 'http://localhost:3001/user/profile';
-    // const user = localStorage.getItem('username');
-
-    // const handleSubmit = async (e) => { };
-    // const handleChange = async (e) => { };
+    // sending data to backend
+    const handleSubmit = e => {
+        e.preventDefault();
+        // validation();
+        console.log(values);
+        console.log(avatar);
+    };
 
     return (
-        <div className="form-content-right">
-            <form className="form">
-                <h1>Get started with us today! Complete your account!</h1>
-                <div className="form-inputs">
-                    <label htmlFor="name" className="form-label">username</label>
-                    <input id="name" type="text" name="name" className="form-input" />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="email" className="form-label">email</label>
-                    <input id="email" type="email" name="email" className="form-input" />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="phone" className="form-label">phone</label>
-                    <input id="phone" type="tel" name="phone" className="form-input" />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="age" className="form-label">age</label>
-                    <input id="age" type="number"  name="age" className="form-input" min="1" max="200" step="1" />
-                </div>
-                <div>
-                    <label htmlFor="date">Birthdate</label>
-                    <input id="date" type="date" name="date" min="1800-01-01"/>
-                </div>
-                <div>
-                    Art Style
-                    <div>
-                        <label htmlFor="traditional" className="form-label">traditional</label>
-                        <input id="traditional" type="checkbox" name="traditional" className="form-input" />
+        <div id="top">
+            <div className="profile-form">
+                <h1>Profile Form</h1>
+            </div>
+            <div className="main">
+                <form onSubmit={handleSubmit}>
+                    <h2 className="name">Name</h2>
+                    <input className="form-input" type="text" name="name" value={values.name} onChange={handleChange} />
+
+                    <h2 className="name">Age</h2>
+                    <input className="form-input" type="number" name="age" min="1" max="200" step="1" value={values.age} onChange={handleChange} />
+
+                    <h2 className="name">Email</h2>
+                    <input className="form-input" type="email" name="email" value={values.email} onChange={handleChange} />
+
+                    <h2 className="name">Phone</h2>
+                    <input className="form-input" type="tel" name="phone" value={values.phone} onChange={handleChange} />
+
+                    <h2 className="name">Location</h2>
+                    <input className="form-input" type="text" name="location" value={values.location} onChange={handleChange} />
+
+                    <h2 className="name">Gender</h2>
+                    <select className="gender" name="gender" value={values.gender} onChange={handleChange}>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <div id="art">
+                        <h2 id="art-style">Art Style</h2>
+                        <div className="cool">
+                            <label className="radio">
+                                <input className="radio-one" type="radio" name="artStyle" value="traditional" checked={values.artStyle === 'traditional'} onChange={handleChange} />
+                                <span className="checkmark"></span>
+                                Traditional
+                            </label>
+                            <label className="radio"> 
+                                <input className="radio-two" type="radio" name="artStyle" value="non-traditional" checked={values.artStyle === 'non-traditional'} onChange={handleChange} />
+                                <span className="checkmark"></span>
+                                Non Traditional
+                            </label>
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="non-traditional" className="form-label">non-traditional</label>
-                        <input id="non-traditional" type="checkbox" name="non-traditional" className="form-input" />
+
+                    <h2 className="name">Bio</h2>
+                    <textarea className="bio" name="bio" placeholder="Tell us a little about yourself" value={values.bio} onChange={handleChange} ></textarea>
+
+                    <h2 className="name">Profile Picture</h2>
+                    <input className="form-input" type="file" name="avatar" onChange={fileSelectChange} />
+
+                    <div id="box">
+                        <button className="button1" type="reset" onClick={handleClick}>Reset</button>
+                        <button className="button1" type="submit">Submit</button>
                     </div>
-                </div>
-                <div>
-                    Gender 
-                    <div>
-                        <label htmlFor="male">Male</label>
-                        <input type="radio" id="male" name="gender" value="male"/>
-                    </div>
-                    <div>
-                        <label htmlFor="female">Female</label>
-                        <input type="radio" id="female" name="gender" value="female"/>
-                    </div>
-                </div>
-                <div>
-                    <label htmlFor="bio">Bio</label>
-                    <textarea id="bio" name="bio" cols="30" rows="10"></textarea>
-                </div>
-                <div>
-                    <label htmlFor="file">File</label>
-                    <input type="file" id="file" name="file"/>
-                </div>
-                <button type="reset">Reset</button>
-                <button type="submit">Submit</button>
-            </form>
+                </form>
+            </div>
         </div>
     );
 };
 
-export default EditProfile;
+export default ProfileEdit;

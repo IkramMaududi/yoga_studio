@@ -23,12 +23,12 @@ function App() {
           <Route path="/about" component={About} /> 
           <Route path="/register" component={Register} /> 
           <Route path="/login" component={Login} /> 
-          <Route path="/editprofile" component={EditProfile} />
-          <Route path="/showprofile" component={ShowProfile} />
+          <Route path="/edit-profile" component={EditProfile} />
+          <Route path="/show-profile" component={ShowProfile} />
           <Route path="/monsterkiller" component={MonsterKiller} />
           <Route path="/jankenpon" component={JanKenPon} />
-          <Route path="/uploadartwork" component={UploadArtWork} /> 
-          <Route path="/showartwork" component={ShowArtWork} /> 
+          <Route path="/upload-artwork" component={UploadArtWork} /> 
+          <Route path="/show-artwork" component={ShowArtWork} /> 
           <Route component={NotFound} />
         </Switch>
       </div>

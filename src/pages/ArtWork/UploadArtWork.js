@@ -3,14 +3,17 @@ import Axios from 'axios';
 import './UploadArtWork.css';
 
 function UploadArtWork() {
+    // get credentials
+    const username = localStorage.getItem('username');
+
     // data to be sent & its destination
+    const url = 'http://localhost:3001/user/artwork';
     const [values, setValues] = useState({
         title: '',
         author: '',
-        description: '' 
+        description: ''
     });
     const [selectedFile, setSelectedFile] = useState('');
-    const url = 'http://localhost:3001/user/uploadartwork';
 
     // message for success or error of uploading
     const [message, setMessage] = useState('');
@@ -21,6 +24,7 @@ function UploadArtWork() {
     fd.append('title', values.title);
     fd.append('author', values.author);
     fd.append('description', values.description);
+    fd.append('username', username)
 
     // this is a function for uploading files
     const handleChange = e => {
@@ -45,7 +49,8 @@ function UploadArtWork() {
             
             const response = await Axios.post(url, fd, {
                 onUploadProgress: ProgressEvent => {
-                    console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%') 
+                    console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
+                    console.log(username)
                 }
             });
 

@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+// import Axios from 'axios';
 import { MonsterHP, PlayerHP } from './MonsterKillerSupport';
 import './MonsterKiller.css';
 
 function KillMonster() {
+    // set the url to send the data
+    // const url = 'http://localhost:3001/user/game';
+    // const username = localStorage.getItem('username');
+
     // choosen value
     let choosenMaxLife = 100;
 
@@ -11,6 +16,7 @@ function KillMonster() {
     const PLAYER_STRONG_ATTACK_VALUE = 40;
     const MONSTER_ATTACK_VALUE = 35;
     const PLAYER_HEAL_VALUE = 25;
+    const DECISION = ["It's a tie", "Computer Won", "Player Won"];
 
     const initialStyle = {
         display: 'inline',
@@ -29,14 +35,6 @@ function KillMonster() {
     const [playerHealthBar, setPlayerHealthBar] = useState(choosenMaxLife);
     const [extraHealthStyle, setExtraHealthStyle] = useState(initialStyle);
     const [haveBonusLife, setHaveBonusLife] = useState(true);
-    const [gameLog, setGameLog] = useState([]);
-
-    useEffect(() => {
-        setGameLog([...gameLog, {
-            monsterHP: monsterHealthBar,
-            playerHP: playerHealthBar
-        }])
-    }, [monsterHealthBar, playerHealthBar]);
 
     const removeBonusLife = () => {
         setExtraHealthStyle({
@@ -53,23 +51,49 @@ function KillMonster() {
         setMonsterHealthBar(choosenMaxLife);
         setPlayerHealthBar(choosenMaxLife);
         addBonusLife();
-        setGameLog([]);
     };
 
     const winCondition = (monsterHP, playerHP) => {
-        if (monsterHP <= 1 && playerHP > 0) {
-            alert('You won!');
+        if (monsterHP <= 0 && playerHP > 0) {
+            /* const result = {
+                result: DECISION[2],
+                specific: {
+                    player: playerHealthBar,
+                    computer: monsterHealthBar
+                }
+            };
+            Axios.post(url, result) 
+            */
+            alert(DECISION[2]);
             reset();
         } else if (monsterHP > 0 && playerHP <= 0) {
             if (haveBonusLife) {
                 removeBonusLife();
                 setPlayerHealthBar(PLAYER_HEAL_VALUE);
             } else {
-                alert('You lost!');
+                /* const result = {
+                    result: DECISION[1],
+                    specific: {
+                        player: playerHealthBar,
+                        computer: monsterHealthBar
+                    }
+                };
+                Axios.post(url, result) 
+                */
+                alert(DECISION[1]);
                 reset();
             };
         } else if (monsterHP <= 0 && playerHP <= 0) {
-            alert('You have a draw');
+            /* const result = {
+                result: DECISION[0],
+                specific: {
+                    player: playerHealthBar,
+                    computer: monsterHealthBar
+                }
+            };
+            Axios.post(url, result) 
+            */
+            alert(DECISION[0]);
             reset();
         };
     };
@@ -104,7 +128,6 @@ function KillMonster() {
         };
     };
 
-    console.log({ monsterHealthBar, playerHealthBar, haveBonusLife });
     winCondition(monsterHealthBar, playerHealthBar);
 
     return (
@@ -119,7 +142,6 @@ function KillMonster() {
                 <button className="monsterkiller" onClick={attackHandler}>ATTACK</button>
                 <button className="monsterkiller" onClick={strongAttackHandler}>STRONG ATTACK</button>
                 <button className="monsterkiller" onClick={healPlayerHandler}>HEAL</button>
-                <button className="monsterkiller" onClick={() => console.log(gameLog)}>SHOW LOG</button>
             </div>
         </div>
     );
