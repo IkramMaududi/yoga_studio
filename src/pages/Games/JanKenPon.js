@@ -28,7 +28,6 @@ function JanKenPon() {
         if (values.computer === '' || values.player === '') { 
             setMessage(DECISION[3]);
             setShow(false);
-            // return;
         } else if (values.computer === values.player && values.computer !== '' && values.player !== '' && message === "") {
             setMessage(DECISION[0]);
             setShow(true);
