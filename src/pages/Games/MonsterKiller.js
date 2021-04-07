@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-// import Axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import { MonsterHP, PlayerHP } from './MonsterKillerSupport';
 import './MonsterKiller.css';
 
@@ -12,7 +12,6 @@ function KillMonster() {
     const PLAYER_STRONG_ATTACK_VALUE = 40;
     const MONSTER_ATTACK_VALUE = 35;
     const PLAYER_HEAL_VALUE = 25;
-    const DECISION = ["It's a tie", "Computer Won", "Player Won"];
 
     const initialStyle = {
         display: 'inline',
@@ -26,6 +25,7 @@ function KillMonster() {
         margin: '0 0.5rem'
     };
 
+    /*states of the game*/
     // health & bonus health state
     const [health, setHealth] = useState({
         computer: choosenMaxLife,
@@ -38,6 +38,31 @@ function KillMonster() {
     const [message, setMessage] = useState("");
     const [show, setShow] = useState(false);
 
+    // check win lose condition
+    useEffect(() => {
+        // Hard coded values for choices & final result of the game
+        const DECISION = ["It's a tie", "Computer Won", "Player Won", ""];
+
+        // game logic
+        if (health.computer <= 0 && health.player > 0) {
+            setMessage(DECISION[2]);
+            setShow(true);
+        } else if (health.computer > 0 && health.player <= 0) {
+            if (haveBonusLife) {
+                removeBonusLife();
+                setHealth({
+                    ...health,
+                    player: PLAYER_HEAL_VALUE
+                });
+            } else {
+                setMessage(DECISION[1]);
+                setShow(true);
+            };
+        } else if (health.computer <= 0 && health.player <= 0) {
+            setMessage(DECISION[0]);
+            setShow(true);
+        };
+    }, [health.computer, health.player, health, haveBonusLife, message])
 
 
     // remove & add back bonus life
@@ -50,79 +75,94 @@ function KillMonster() {
         setHaveBonusLife(false);
     };
 
-    // handleReset game
+
+    // reset game
     const handleReset = () => {
         setHealth({
             computer: choosenMaxLife,
             player: choosenMaxLife
         });
         addBonusLife();
-    };
-
-
-    const winCondition = (monsterHP, playerHP) => {
-        if (monsterHP <= 0 && playerHP > 0) {
-            alert(DECISION[2]);
-            handleReset();
-        } else if (monsterHP > 0 && playerHP <= 0) {
-            if (haveBonusLife) {
-                removeBonusLife();
-                setHealth({
-                    ...health,
-                    player: PLAYER_HEAL_VALUE
-                });
-
-            } else {
-                alert(DECISION[1]);
-                handleReset();
-            };
-        } else if (monsterHP <= 0 && playerHP <= 0) {
-            alert(DECISION[0]);
-            handleReset();
-        };
+        setMessage('');
+        setShow(false);
     };
 
 
     // different type of game actions
     const attackHandler = () => {
-        // attack to computer & player respectively
-        const damage2Monster = Math.random() * PLAYER_NORMAL_ATTACK_VALUE;
-        const damage2Player = Math.random() * MONSTER_ATTACK_VALUE;
-        setHealth({
-            computer: Math.floor(health.computer - damage2Monster),
-            player: Math.floor(health.player - damage2Player)
-        });
-    };
-    const strongAttackHandler = () => {
-        // attack to computer & player respectively
-        const damage2Monster = Math.random() * PLAYER_STRONG_ATTACK_VALUE
-        const damage2Player = Math.random() * MONSTER_ATTACK_VALUE;
-        setHealth({
-            computer: Math.floor(health.computer - damage2Monster),
-            player: Math.floor(health.player - damage2Player)
-        });
-    };
-    const healPlayerHandler = () => {
-        // player can't use extra health if health is still high & when health is being added, player can't attack
-        if (choosenMaxLife - health.player < PLAYER_HEAL_VALUE) {
-            alert("You can't use extra health yet!");
+        // action can't be performed if the game result is shown
+        if (show) {
+            return;
         } else {
-            removeBonusLife();
+            // attack to computer & player respectively
+            const damage2Monster = Math.random() * PLAYER_NORMAL_ATTACK_VALUE;
             const damage2Player = Math.random() * MONSTER_ATTACK_VALUE;
             setHealth({
-                ...health,
-                player: Math.floor(health.player + PLAYER_HEAL_VALUE - damage2Player)
+                computer: Math.floor(health.computer - damage2Monster),
+                player: Math.floor(health.player - damage2Player)
             });
+        };
+    };
+    const strongAttackHandler = () => {
+        // action can't be performed if the game result is shown
+        if (show) {
+            return;
+        } else {
+            // attack to computer & player respectively
+            const damage2Monster = Math.random() * PLAYER_STRONG_ATTACK_VALUE
+            const damage2Player = Math.random() * MONSTER_ATTACK_VALUE;
+            setHealth({
+                computer: Math.floor(health.computer - damage2Monster),
+                player: Math.floor(health.player - damage2Player)
+            });
+        };
+    };
+    const healPlayerHandler = () => {
+        // action can't be performed if the game result is shown
+        if (show) {
+            return;
+        } else {
+            // player can't use extra health if health is still high & when health is being added, player can't attack
+            if (choosenMaxLife - health.player < PLAYER_HEAL_VALUE) {
+                alert("You can't use extra health yet!");
+            } else {
+                removeBonusLife();
+                const damage2Player = Math.random() * MONSTER_ATTACK_VALUE;
+                setHealth({
+                    ...health,
+                    player: Math.floor(health.player + PLAYER_HEAL_VALUE - damage2Player)
+                });
+            };
         };
     };
 
     // send data to backend to be saved to DB
-    const handleSendData = () => {
-    // const url = 'http://localhost:3001/user/game';
-    // const username = localStorage.getItem('username');
-    };
+    const handleSendData = async (e) => {
+        // initiate the data to be sent & its destination
+        const url = 'http://localhost:3001/user/game';
+        const username = localStorage.getItem('username');
+        const result = {
+            result: message,
+            specific: {
+                playerHP: health.player,
+                computerHP: health.computer
+            }
+        };
 
-    winCondition(health.computer, health.player);
+        // perform sending data
+        e.preventDefault();
+        try {
+            const response  = await Axios.post(url, result, { 
+                headers: { 
+                    username, 
+                    game: 'Monster-Killer' 
+                } 
+            });
+            console.log(response)
+        } catch (err) {
+            console.error(err.message);
+        };};
+
 
     return (
         <div className='play1'>
@@ -140,8 +180,8 @@ function KillMonster() {
             { show ? 
                 (
                     <div>
-                        <p>Your final HP: {health.player}</p>
-                        <p>Monster final HP: {health.computer}</p>
+                        <p>Your final health: {health.player}</p>
+                        <p>Monster final health: {health.computer}</p>
                         <h1>{message}</h1>
                         <button onClick={handleSendData}>Save Result</button>
                         <button onClick={handleReset}>Reset</button>

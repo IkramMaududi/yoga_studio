@@ -1,7 +1,9 @@
 .play1 {
-    background: #2c2c2c;
+    /* background: #2c2c2c; */
+	background: lightgreen;
     font-family: sans-serif;
-	height: 90vh;
+	/* height: 90vh; */
+	height: auto;
 }
 
 #health {
