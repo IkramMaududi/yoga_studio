@@ -1,46 +1,106 @@
-import React, { useState } from 'react';
-// import React, { useEffect, useState } from 'react';
-// import Axios from 'axios';
-import './EditProfile.css';;
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
+// import validator from 'validator';
+import './EditProfile.css';
 
 function ProfileEdit() {
-/*  // check whether the user has ever filled the profile before
-    const url = 'http://localhost:3001/user/profile';
-    const [profile, setProfile] = useState();
-    useEffect( () => {
-        const username = localStorage.getItem('username');
-        const getData = async () => {
-            await Axios
-                    .get(url, { headers: {username} })
-                    .then(res => setProfile(res.data))
-        };
-        getData();
-    }, []);
-
-    // if the user's profile exists in DB, then it's patch profile, else it's fill profile
-    if (!profile) {
-        // here fill the profile for the first time
-    } else {
-        // here edit the profile
-    }; */
-
-    // intial value
-    const INITIALVALUE = {
-        name: '',
+    //* states of data to be sent 
+    const NULLVALUE = {
+        fullname: '',
         age: '',
         email: '',
         phone: '',
         location: '',
-        gender: '',
-        artStyle: 'traditional',
+        gender: 'male',
+        artstyle: 'traditional',
         bio: ''
     };
+    const [values, setValues] = useState(NULLVALUE);
+    const [avatar, setAvatar] = useState(null);
+    const [profileFilled, setProfileFilled] = useState(false);
 
-    // state of the page
-    const [values, setValues] = useState(INITIALVALUE);
-    const [avatar, setAvatar] = useState('');
+    //* message for success or error of uploading
+    const [message, setMessage] = useState('');
 
-    // functions for change in value & submit value
+    //* check whether the user has ever filled the profile before
+    const url = 'http://localhost:3001/user/profile';
+    useEffect( () => {
+        const username = localStorage.getItem('username');
+        const getData = async () => {
+            try {
+                const response = await Axios.get(url, {
+                    headers: {
+                        username
+                }});
+                if (response.data.exist) {
+                    console.log('a profile exists, you can update it');
+                    console.log(response.data.data[0])
+                    // // change the state of profile value
+                    const {fullname, email, phone, age, location, artstyle, gender, bio, avatar} = response.data.data[0];
+                    //TODO: check whether these 2 setState below work properly, especially the avatar
+                    setValues({
+                        fullname, age, email, phone, location, gender, artstyle, bio
+                    });
+                    setAvatar(avatar);
+                    setProfileFilled(true);
+                } else {
+                    console.log('a profile does not exist, make a new one please');
+                    setProfileFilled(false);
+                };
+            } catch (err) {
+                console.error(err);
+            };
+        };
+        getData();
+    }, []);
+    
+    //* function for data validation & send data to backend 
+    const checkData = () => {
+        // let errorTotal = {};
+
+        //TODO: perform data validation here
+        // const checkFullName = validator.isAlpha(values.fullname);
+        // const checkEmail = validator.isEmail(values.email);
+        // const checkPhone = validator.isMobilePhone(values.phone); 
+        if (values.fullname) {
+            
+        }
+
+
+    };
+    const sendData = async () => {
+        const username = localStorage.getItem('username');
+        const fd = new FormData();
+        fd.append('avatar', avatar);
+        fd.append('fullname', values.fullname);
+        fd.append('age', values.age);
+        fd.append('email', values.email);
+        fd.append('phone', values.phone);
+        fd.append('location', values.location);
+        fd.append('gender', values.gender);
+        fd.append('artstyle', values.artstyle);
+        fd.append('bio', values.bio);
+
+        const response = await Axios.post(url, fd, {
+            headers: {
+                username,
+                profileFilled
+            }
+        }, {
+            onUploadProgress: ProgressEvent => {
+                console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
+            }
+        });
+
+        //* showing result of upload
+        if (response.data.editProfile) {
+            setMessage(response.data.message)
+        } else {
+            setMessage('edit profile failed');
+        };
+    };
+
+    //* functions for event changes
     const handleChange = e => {
         const { name, value } = e.target;
         setValues({
@@ -49,22 +109,18 @@ function ProfileEdit() {
         });
     };
     const fileSelectChange = e => { setAvatar(e.target.files[0]) };
-    const handleClick = e => {
+    const handleReset = e => {
         e.preventDefault(); 
         setAvatar('');
-        setValues(INITIALVALUE);
+        setValues(NULLVALUE);
     };
-
-    // function for validating form, before sending to backend
-    // const validation = e => {
-    // };
-
-    // sending data to backend
     const handleSubmit = e => {
         e.preventDefault();
-        // validation();
         console.log(values);
         console.log(avatar);
+        console.log(values.email, values.phone, values.age);
+        checkData();
+        sendData();
     };
 
     return (
@@ -74,8 +130,8 @@ function ProfileEdit() {
             </div>
             <div className="main">
                 <form onSubmit={handleSubmit}>
-                    <h2 className="name">Name</h2>
-                    <input className="form-input" type="text" name="name" value={values.name} onChange={handleChange} />
+                    <h2 className="name">Full Name</h2>
+                    <input className="form-input" type="text" name="fullname" value={values.fullname} onChange={handleChange} />
 
                     <h2 className="name">Age</h2>
                     <input className="form-input" type="number" name="age" min="1" max="200" step="1" value={values.age} onChange={handleChange} />
@@ -100,12 +156,12 @@ function ProfileEdit() {
                         <h2 id="art-style">Art Style</h2>
                         <div className="cool">
                             <label className="radio">
-                                <input className="radio-one" type="radio" name="artStyle" value="traditional" checked={values.artStyle === 'traditional'} onChange={handleChange} />
+                                <input className="radio-one" type="radio" name="artstyle" value="traditional" checked={values.artstyle === 'traditional'} onChange={handleChange} />
                                 <span className="checkmark"></span>
                                 Traditional
                             </label>
                             <label className="radio"> 
-                                <input className="radio-two" type="radio" name="artStyle" value="non-traditional" checked={values.artStyle === 'non-traditional'} onChange={handleChange} />
+                                <input className="radio-two" type="radio" name="artstyle" value="non-traditional" checked={values.artstyle === 'non-traditional'} onChange={handleChange} />
                                 <span className="checkmark"></span>
                                 Non Traditional
                             </label>
@@ -119,11 +175,12 @@ function ProfileEdit() {
                     <input className="form-input" type="file" name="avatar" onChange={fileSelectChange} />
 
                     <div id="box">
-                        <button className="button1" type="reset" onClick={handleClick}>Reset</button>
-                        <button className="button1" type="submit">Submit</button>
+                        <button className="button1" type="reset" onClick={handleReset}>Reset</button>
+                        <button className="button1" type="submit">Save</button>
                     </div>
                 </form>
             </div>
+            <h1 style={{color:"red"}}>{message}</h1>
         </div>
     );
 };

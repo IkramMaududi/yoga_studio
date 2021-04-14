@@ -3,10 +3,10 @@ import Axios from 'axios';
 import './ShowArtWork.css';
 
 function ShowArtWork() {
-    // sent data & get it back from DB
-    const url = 'http://localhost:3001/user/artwork';
+    //* sent data & get it back from DB
     const [downloads, setDownloads] = useState([]);
     useEffect( () => {
+        const url = 'http://localhost:3001/user/artwork';
         const username = localStorage.getItem('username');
         const getData = async () => {
             await Axios
@@ -16,7 +16,7 @@ function ShowArtWork() {
         getData();
     }, []);
 
-    // process received data
+    //* process received data
     const arrayBufferToBase64 = (buffer) => {
         let binary = '';
         let bytes = [].slice.call(new Uint8Array(buffer));
@@ -26,7 +26,7 @@ function ShowArtWork() {
 
     return (
         <>
-            {downloads.message ? (
+            {downloads.exist ? (
                 <div className="Portfolio">
                     {downloads.data.map((val, index) => {
                         return (

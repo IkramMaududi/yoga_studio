@@ -6,7 +6,7 @@ function UploadArtWork() {
     // get credentials
     const username = localStorage.getItem('username');
 
-    // data to be sent & its destination
+    //* data to be sent & its destination
     const url = 'http://localhost:3001/user/artwork';
     const [values, setValues] = useState({
         title: '',
@@ -15,7 +15,7 @@ function UploadArtWork() {
     });
     const [selectedFile, setSelectedFile] = useState('');
 
-    // message for success or error of uploading
+    //* message for success or error of uploading
     const [message, setMessage] = useState('');
 
     // these codes below set key-value pairs for to-be-sent data
@@ -24,9 +24,9 @@ function UploadArtWork() {
     fd.append('title', values.title);
     fd.append('author', values.author);
     fd.append('description', values.description);
-    fd.append('username', username)
+    // fd.append('username', username)
 
-    // this is a function for uploading files
+    //* functions for event changes
     const handleChange = e => {
         const {name, value} = e.target;
         setValues({
@@ -39,22 +39,24 @@ function UploadArtWork() {
         e.preventDefault();
         // codes below are to make api call to backend: uploading files to database
         try {
-            // check for file extension
+            //* validation for file extension & size
             const imageName = selectedFile.name;
             if (!imageName.match(/\.(jpg|jpeg|png)$/)) return setMessage('Please upload an image with png, jpg, or jpeg file extension!');
-
-            // check for file size
             const imageSize = Math.round((selectedFile.size));
             if (imageSize > 2000000) return setMessage('File is too big');
             
             const response = await Axios.post(url, fd, {
+                headers: {
+                    username
+                }
+            }, {
                 onUploadProgress: ProgressEvent => {
                     console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
                     console.log(username)
                 }
             });
 
-            // showing result of upload
+            //* showing result of upload
             if (response.data.uploadArtWork) {
                 setMessage(response.data.message)
             } else {

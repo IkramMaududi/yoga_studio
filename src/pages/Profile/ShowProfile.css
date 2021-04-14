@@ -27,5 +27,5 @@ body {
 .title {
     position: absolute;
     left: 15px;
-    bottom: 0px;
+    bottom: -40px;
 }
