@@ -1,28 +1,26 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import Navbar from './components/Navbar';
-// import Navbar1 from './components/Navbar1';
-import Navbar2 from './components/Navbar2';
+import Navbar from './components/Navbar';
 
 import Home from './pages/Home-About/Home';
 import About from './pages/Home-About/About';
 import Register from './pages/Credentials/Register';
 import Login from './pages/Credentials/Login';
+
 import MonsterKiller from './pages/Games/MonsterKiller';
 import JanKenPon from './pages/Games/JanKenPon';
+
 import ShowProfile from './pages/Profile/ShowProfile';
 import EditProfile from './pages/Profile/EditProfile';
+
 import UploadArtWork from './pages/ArtWork/UploadArtWork';
 import ShowArtWork from './pages/ArtWork/ShowArtWork';
+
 import NotFound from './pages/NotFound/NotFound';
-import './App.css';
 
 function App() {
 	return (
 		<Router>
-			{/* <div className="App"> */}
-				{/* <Navbar/> */}
-				{/* <Navbar1 /> */}
-				<Navbar2 />
+				<Navbar />
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/about" component={About} />
@@ -36,7 +34,6 @@ function App() {
 					<Route path="/show-artwork" component={ShowArtWork} />
 					<Route component={NotFound} />
 				</Switch>
-			{/* </div> */}
 		</Router>
 	);
 };

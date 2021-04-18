@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
-
     // logout functionality
     const logout = () => {
         localStorage.clear();
@@ -17,49 +16,77 @@ function Navbar() {
         setLoggedIn(condition);
     }, [condition] );
 
-    const navStyle = {
-        color: 'white'
-    };
-
     return (
-        <nav>
-            <Link style={navStyle} to='/'>Home</Link>
-            {loggedIn === 'true' ? (
-                <ul className='nav-link'>
-                    <Link style={navStyle} to='/edit-profile'>
-                        <li>Edit Profile</li>
-                    </Link>
-                    <Link style={navStyle} to='/show-profile'>
-                        <li>Show Profile</li>
-                    </Link>
-                    <Link style={navStyle} to='/upload-artwork'>
-                        <li>Upload Art Work</li>
-                    </Link>
-                    <Link style={navStyle} to='/show-artwork'>
-                        <li>Show Art Work</li>
-                    </Link>
-                    <Link style={navStyle} to='/monsterkiller'>
-                        <li>Monster Killer</li>
-                    </Link>
-                    <Link style={navStyle} to='/jankenpon'>
-                        <li>Jan Ken Pon</li>
-                    </Link>
-                    <button onClick={logout}>log out</button>
+        // <div className="menu-bar">
+        <nav className="menu-bar">
+            {loggedIn ? (
+                <ul>
+                    <li className="active">
+                        <Link className="Link" to='/'>Home</Link>
+                    </li>
+                    <li>
+                        Profile
+                        <div className="sub-menu-1">
+                            <ul>
+                                <li>
+                                    <Link className="Link" to='/show-profile'>Show Profile</Link>
+                                </li>
+                                <li>
+                                    <Link className="Link" to='/edit-profile'>Edit Profile</Link>
+                                </li> 
+                            </ul> 
+                        </div>
+                    </li>
+                    <li>
+                        Artwork
+                        <div className="sub-menu-1">
+                            <ul>
+                                <li>
+                                    <Link className="Link" to='/upload-artwork'>Upload Artwork</Link>
+                                </li>
+                                <li>
+                                    <Link className="Link" to='/show-artwork'>Show Artwork</Link>
+                                </li> 
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        Game
+                        <div className="sub-menu-1">
+                            <ul>
+                                <li>
+                                    <Link className="Link" to='/monster-killer'>Monster Killer</Link>
+                                </li>
+                                <li>
+                                    <Link className="Link" to='/jan-ken-pon'>Jan Ken Pon</Link>
+                                </li> 
+                            </ul>
+                        </div>
+                    </li>
+                    {/* <li>
+                        <button onClick={logout}>log out</button>
+                    </li> */}
+                    <button className="LogOut" onClick={logout}>log out</button>
+                    
                 </ul>
             ) : (
-                <ul className='nav-link'>
-                    <Link style={navStyle} to='/about'>
-                        <li>About</li>
-                    </Link>
-                    <Link style={navStyle} to='/register'>
-                        <li>register</li>
-                    </Link>
-                    <Link style={navStyle} to='/login'>
-                        <li>login</li>
-                    </Link>
+                <ul> 
+                    <li className="active">
+                        <Link className="Link" to='/'>Home</Link>
+                    </li>
+                    <li>
+                        <Link className="Link" to='/about'>About</Link>
+                    </li>
+                    <li>
+                        <Link className="Link" to='/register'>Register</Link>
+                    </li> 
+                    <li>
+                        <Link className="Link" to='/login'>Login</Link>
+                    </li> 
                 </ul>
             )}
         </nav>
+        // </div>
     );
 };
 
