@@ -1,0 +1,30 @@
+* {
+    font-family: monospace;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 5vh;
+    background: rgb(108, 161, 179);
+    color: white;
+}
+
+.nav-link {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+Link {
+    color: white;
+}
+nav button {
+    background-color: grey;
+    width: 50px;
+    color: white;
+    font-size: 10px;
+}
