@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Navbar from './components/Navbar';
-import Navbar1 from './components/Navbar1';
+// import Navbar1 from './components/Navbar1';
+import Navbar2 from './components/Navbar2';
+
 import Home from './pages/Home-About/Home';
 import About from './pages/Home-About/About';
 import Register from './pages/Credentials/Register';
@@ -17,9 +19,10 @@ import './App.css';
 function App() {
 	return (
 		<Router>
-			<div className="App">
+			{/* <div className="App"> */}
 				{/* <Navbar/> */}
-				<Navbar1 />
+				{/* <Navbar1 /> */}
+				<Navbar2 />
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/about" component={About} />
@@ -33,7 +36,7 @@ function App() {
 					<Route path="/show-artwork" component={ShowArtWork} />
 					<Route component={NotFound} />
 				</Switch>
-			</div>
+			{/* </div> */}
 		</Router>
 	);
 };
