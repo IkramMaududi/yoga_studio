@@ -1,32 +1,3 @@
-/* .Navbar {
-    width: 100%;
-    height: 40px;
-    background-color: rgb(82, 66, 221);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.Navbar a {
-    font-size: 18px;
-    margin: 10px;
-    color: white;
-    text-decoration: none;
-    font-family: monospace;
-}
-
-.Navbar a:hover {
-    cursor: pointer;
-}
-
-.Navbar button {
-    background-color: red;
-    width: 100px;
-    color: white;
-    font-size: 18px;
-    font-family: monospace;
-} */
-
 * {
     font-family: monospace;
 }
