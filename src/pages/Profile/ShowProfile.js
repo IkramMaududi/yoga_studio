@@ -29,71 +29,102 @@ function ShowProfile() {
     };
     const [values, setValues] = useState(NULLVALUE);
     const [avatar, setAvatar] = useState(null);
-    const [profileFilled, setProfileFilled] = useState(false);
     const [totalArtWork, setTotalArtWork] = useState(null);
     const [game, setGame] = useState(null);
-    // const [gamePlay, setGamePlay] = useState({
 
-    // });
-
-    //TODO: add more things to fetch: game stats & total artwork
-    //* check whether the user has ever filled the profile before
     useEffect( () => {
-        const url = 'http://localhost:3001/user/profile';
         const username = localStorage.getItem('username');
-        const getData = async () => {
+
+        const urlProfile = 'http://localhost:3001/user/profile';
+        const urlArtWork = 'http://localhost:3001/user/artwork';
+        const urlGame = 'http://localhost:3001/user/game';
+
+        const getDataProfile = async () => {
             try {
-                const response = await Axios.get(url, {
-                    headers: {
-                        username
-                }});
-                if (response.data.exist) {
+                const responseProfile = await Axios.get(urlProfile, { headers: {username} });
+                if (responseProfile.data.exist) {
                     console.log('a profile exists');
-                    console.log(response.data.data);
+                    console.log(responseProfile.data.data);
                     // change the state of profile value
-                    const {fullname, email, phone, age, location, artstyle, gender, bio, avatar} = response.data.data[0];
-                    //TODO: check whether these 2 setState below work properly, especially the avatar
+                    const {fullname, email, phone, age, location, artstyle, gender, bio, avatar} = responseProfile.data.data[0];
                     setValues({
                         fullname, age, email, phone, location, gender, artstyle, bio
                     });
                     setAvatar(avatar);
-                    setProfileFilled(true);
                 } else {
                     console.log('a profile does not exist');
-                    setProfileFilled(false);
                 };
             } catch (err) {
                 console.error(err);
             };
         };
-        getData();
-    }, []);
-    
-    //* this is to obtain number of artwork
-    useEffect( () => {
-        const url = 'http://localhost:3001/user/artwork';
-        const username = localStorage.getItem('username');
-        const getData = async () => {
+        const getDataArtWork = async () => {
             await Axios
-                    .get(url, { headers: {username} })
+                    .get(urlArtWork, { headers: {username} })
                     .then(res => {
                         console.log(res.data.data.length);
                         setTotalArtWork(res.data.data.length);
                     })
         };
-        getData();
-    }, []);
+        const getDataGame = async () => {
+            try {
+                const responseGame = await Axios.get(urlGame, { headers: {username} });
+                if (responseGame.data.exist) {
+                    console.log(' game data exists');
+                    console.log(responseGame.data.data);
+                    
+                    let JanKenPon = 0, winJKP = 0, loseJKP = 0, drawJKP = 0, 
+                        MonsterKiller = 0, winMK = 0, loseMK = 0, drawMK = 0;
 
-    //* this is to obtain total gameplay
-    useEffect( () => {
-        const url = 'http://localhost:3001/user/game';
-        const username = localStorage.getItem('username');
-        const getData = async () => {
-            await Axios
-                    .get(url, { headers: {username} })
-                    .then(res => console.log(res.data))
+                    responseGame.data.data.forEach((item) => {
+                        const DECISION = ["It's a tie", "Computer Won", "Player Won", ""];
+                        if (item.game === 'Jan-Ken-Pon') {
+                            JanKenPon += 1;
+                            if (item.result.result === DECISION[0]) {
+                                drawJKP += 1; 
+                            } else if (item.result.result === DECISION[1]) {
+                                loseJKP += 1;
+                            } else if (item.result.result === DECISION[2]) {
+                                winJKP += 1;
+                            }; 
+                        } else if (item.game === 'Monster-Killer') {
+                            MonsterKiller += 1;
+                            if (item.result.result === DECISION[0]) {
+                                drawMK += 1; 
+                            } else if (item.result.result === DECISION[1]) {
+                                loseMK += 1;
+                            } else if (item.result.result === DECISION[2]) {
+                                winMK += 1;
+                            };                         
+                        }; 
+                    });
+                    const fetchedData = {
+                        JKP : {
+                            play: JanKenPon,
+                            win: winJKP,
+                            lose: loseJKP,
+                            draw: drawJKP
+                        },
+                        MK : {
+                            play: MonsterKiller,
+                            win: winMK,
+                            lose: loseMK,
+                            draw: drawMK
+                        }
+                    };
+                    console.log(fetchedData);
+                    setGame(fetchedData);
+                } else {
+                    console.log("game data doesn't exist");
+                };
+            } catch (err) {
+                console.error(err);
+            };
         };
-        getData();
+
+        getDataProfile();
+        getDataArtWork(); 
+        getDataGame();
     }, []);
 
     //* process received data
@@ -134,11 +165,22 @@ function ShowProfile() {
                 )}
                 <p> <FontAwesomeIcon icon={faInfo}/>Bio: {values.bio}</p>
                 <p> <FontAwesomeIcon icon={faBirthdayCake}/>Age: {values.age}</p>
-                <p> <FontAwesomeIcon icon={faAsterisk}/>Game Stats:</p>
 
-                {/* <p>game: {game.exist}</p> */}
-                {/* <p>JanKenPon: play {} win {} lose {}</p>
-                <p>MonsterKiller: play {} win {} lose {}</p> */}
+                <p> <FontAwesomeIcon icon={faAsterisk}/>Game Stats:</p>
+                
+                {game? (
+                    <>
+                        <p>JanKenPon: play {game.JKP.play}, win {game.JKP.win}, lose {game.JKP.lose}, draw {game.JKP.draw}</p>
+                        <p>Monster Killer: play {game.MK.play}, win {game.MK.win}, lose {game.MK.lose}, draw {game.MK.draw}</p>  
+                    </>
+                ) : (
+                    <>
+                        <p>JanKenPon: play 0, win 0, lose 0, draw 0</p>
+                        <p>Monster Killer: play 0, win 0, lose 0, draw 0</p>
+                    </>
+                )}
+               
+
                 <p> <FontAwesomeIcon icon={faArchive}/>Total Number of Arts: {totalArtWork}</p> 
             </div>
         </div>
