@@ -1,44 +1,46 @@
-
 .Portfolio {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #85ffbd;
+    background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
 }
 
 .Portfolio .Post {
-  width: 800px;
-  height: 1200px;
-  border: 2px solid black;
-  display: flex;
-  flex-direction: column;
-  margin: 50px;
+    width: 800px;
+    height: 1200px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
 }
 
 .Portfolio .Post .Image {
-  flex: 70%;
+    flex: 70%;
 }
 
 .Portfolio .Post .Image img {
-  width: 100%;
+    width: 100%;
 }
 
 .Portfolio .Post .Content {
-  flex: 30%;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    flex: 30%;
+    display: flex;
+    flex-direction: column;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
 }
 
 .Portfolio .Post .Content .title {
-  flex: 30%;
-  text-align: center;
-  font-size: 20px;
+    flex: 30%;
+    text-align: center;
+    font-size: 20px;
 }
 
 .Portfolio .Post .Content .description {
-  flex: 70%;
-  text-align: center;
+    flex: 70%;
+    text-align: center;
 }

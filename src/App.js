@@ -3,8 +3,8 @@ import Navbar from './components/Navbar';
 
 import Home from './pages/Home-About/Home';
 import About from './pages/Home-About/About';
-import Register from './pages/Credentials/Register';
-import Login from './pages/Credentials/Login';
+import SignUp from './pages/Credentials/SignUp';
+import SignIn from './pages/Credentials/SignIn';
 
 import MonsterKiller from './pages/Games/MonsterKiller';
 import JanKenPon from './pages/Games/JanKenPon';
@@ -24,14 +24,14 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/about" component={About} />
-					<Route path="/register" component={Register} />
-					<Route path="/login" component={Login} />
-					<Route path="/edit-profile" component={EditProfile} />
-					<Route path="/show-profile" component={ShowProfile} />
-					<Route path="/monster-killer" component={MonsterKiller} />
-					<Route path="/jan-ken-pon" component={JanKenPon} />
-					<Route path="/upload-artwork" component={UploadArtWork} />
-					<Route path="/show-artwork" component={ShowArtWork} />
+					<Route path="/signup" component={SignUp} />
+					<Route path="/signin" component={SignIn} />
+					<Route path="/editprofile" component={EditProfile} />
+					<Route path="/showprofile" component={ShowProfile} />
+					<Route path="/monsterkiller" component={MonsterKiller} />
+					<Route path="/jankenpon" component={JanKenPon} />
+					<Route path="/uploadartwork" component={UploadArtWork} />
+					<Route path="/showartwork" component={ShowArtWork} />
 					<Route component={NotFound} />
 				</Switch>
 		</Router>

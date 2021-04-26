@@ -2,10 +2,9 @@ import React, {useState, useEffect} from 'react';
 import Axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandRock, faHandScissors, faHandPaper } from '@fortawesome/free-solid-svg-icons';
-import './JanKenPon.css';
+import { faRedo, faSave, faPlay, faHandRock, faHandScissors, faHandPaper } from '@fortawesome/free-solid-svg-icons';
 
-library.add( faHandRock, faHandScissors, faHandPaper );
+library.add( faRedo, faSave, faPlay, faHandRock, faHandScissors, faHandPaper );
 
 function JanKenPon() {
     // hard coded values
@@ -115,23 +114,35 @@ function JanKenPon() {
     };
         
     return (
-        <div>
-            <div>
-                <button onClick={playerChooseRock}> <FontAwesomeIcon icon={faHandRock}/>rock </button>
-                <button onClick={playerChoosePaper}>  <FontAwesomeIcon icon={faHandPaper}/>paper</button>
-                <button onClick={playerChooseScissors}> <FontAwesomeIcon icon={faHandScissors}/>scissors</button>
+        <div id='top' className='fullSize'>
+            <div className='controls'>
+                <button className='monsterkiller' onClick={playerChooseRock}> 
+                    <FontAwesomeIcon icon={faHandRock}/>rock 
+                </button>
+                <button className='monsterkiller' onClick={playerChoosePaper}>  
+                    <FontAwesomeIcon icon={faHandPaper}/>paper 
+                </button>
+                <button className='monsterkiller' onClick={playerChooseScissors}> 
+                    <FontAwesomeIcon icon={faHandScissors}/>scissors 
+                </button>
+                <button className='monsterkiller' onClick={play}> 
+                    <FontAwesomeIcon icon={faPlay}/>play 
+                </button>
             </div>
-            <button onClick={play}>play</button>
 
             {/* <show loading for 0.5s here> */}
             { show ? 
                 (
-                    <div>
+                    <div className='controls'>
                         <p>your choice: {values.player}</p>
                         <p>computer's choice: {values.computer}</p>
-                        <h1>{message}</h1>
-                        <button onClick={handleSendData}>Save Result</button>
-                        <button onClick={handleReset}>Reset</button>
+                        <h1 style={{color: 'red'}}>{message}</h1>
+                        <button className='monsterkiller' onClick={handleSendData}> 
+                            <FontAwesomeIcon icon={faSave}/>Save Result 
+                        </button>
+                        <button className='monsterkiller' onClick={handleReset}> 
+                            <FontAwesomeIcon icon={faRedo}/>Reset 
+                        </button>
                     </div>
                 ) 
                 : 

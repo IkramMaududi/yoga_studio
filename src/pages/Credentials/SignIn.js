@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Axios from 'axios';
 import './Credentials.css';
 
-function Login() {
+function SignIn() {
     // data to be sent & its destination
     const [values, setValues] = useState({
         username: '',
@@ -39,16 +39,25 @@ function Login() {
     };
 
     return (
-        <div className="Credentials">
-            <h1>Login</h1>
-            <div className="CredentialsForm">
-                <input type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
-                <input type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
-                <input type="submit" value="Login" onClick={handleSubmit} />
+        <div id="top" className="fullSize">
+            <div className="profile-form">
+                <h1>Sign In</h1>
+            </div>
+            <div className="main">
+                <h2 className="name">Username</h2>
+                <input className="form-input" type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
+
+                <h2 className="name">Password</h2>
+                <input className="form-input" type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
+
+                <div id="box">
+                    <button className="button1" type="Sign Up" onClick={handleSubmit}>Save</button>
+                </div>
+
                 <h1 style={{color:"red"}}>{message}</h1>
             </div>
         </div> 
     );
 };
 
-export default Login;
+export default SignIn;

@@ -3,16 +3,14 @@ import Axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-         faAsterisk, faUser, faQuestion, faArchive,
-         faMars, faVenus, faInfo, faBirthdayCake, 
-         faBriefcase, faHome, faAt, faPhone,
-       } from '@fortawesome/free-solid-svg-icons';
+    faAsterisk, faUser, faQuestion, faArchive, faMars, faVenus, 
+    faInfo, faBirthdayCake, faBriefcase, faHome, faAt, faPhone,
+} from '@fortawesome/free-solid-svg-icons';
 import './ShowProfile.css';
 
 library.add(
-    faAsterisk, faUser, faQuestion, faArchive,
-    faMars, faVenus, faInfo, faBirthdayCake, 
-    faBriefcase, faHome, faAt, faPhone,
+    faAsterisk, faUser, faQuestion, faArchive, faMars, faVenus, 
+    faInfo, faBirthdayCake, faBriefcase, faHome, faAt, faPhone,
 );
 
 function ShowProfile() {
@@ -136,52 +134,54 @@ function ShowProfile() {
     };
 
     return (
-        <div className="profile-card">
-            <div className="image-container">
-                {avatar ? (
-                    <img src={`data:image/png;base64, ${arrayBufferToBase64(avatar.data)}`} alt="profile pict" style={{width:'100%'}} /> 
-                ) : (
-                    <img src="/blank-profile.png" alt="blank-profile" style={{width:'100%'}} />
-                )}
-                <div className="title">
-                    {values.fullname ? (
-                        <h2>{values.fullname}</h2>
+        <div id="top">
+            <div className="profile-card">
+                <div className="image-container">
+                    {avatar ? (
+                        <img src={`data:image/png;base64, ${arrayBufferToBase64(avatar.data)}`} alt="profile pict" style={{width:'100%'}} /> 
                     ) : (
-                        <h2>John Doe</h2>
+                        <img src="/blank-profile.png" alt="blank-profile" style={{width:'100%'}} />
                     )}
+                    <div className="title">
+                        {values.fullname ? (
+                            <h2>{values.fullname}</h2>
+                        ) : (
+                            <h2>John Doe</h2>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <div className="main-container">
-                <p> <FontAwesomeIcon icon={faBriefcase}/>About Me </p>
-                <p> <FontAwesomeIcon icon={faHome}/>Location: {values.location}</p>
-                <p> <FontAwesomeIcon icon={faAt}/>Email: {values.email}</p>
-                <p> <FontAwesomeIcon icon={faPhone}/>Phone: {values.phone}</p>
-                {values.gender === 'male' ? (
-                    <p> <FontAwesomeIcon icon={faMars}/>Gender: Male </p>
-                ) : values.gender === 'female' ? (
-                    <p> <FontAwesomeIcon icon={faVenus}/>Gender: Female </p>
-                ) : (
-                    <p> <FontAwesomeIcon icon={faQuestion}/>Gender: Unknown </p>
-                )}
-                <p> <FontAwesomeIcon icon={faInfo}/>Bio: {values.bio}</p>
-                <p> <FontAwesomeIcon icon={faBirthdayCake}/>Age: {values.age}</p>
+                <div className="main-container">
+                    <p> <FontAwesomeIcon icon={faBriefcase}/>About Me </p>
+                    <p> <FontAwesomeIcon icon={faHome}/>Location: {values.location}</p>
+                    <p> <FontAwesomeIcon icon={faAt}/>Email: {values.email}</p>
+                    <p> <FontAwesomeIcon icon={faPhone}/>Phone: {values.phone}</p>
+                    {values.gender === 'male' ? (
+                        <p> <FontAwesomeIcon icon={faMars}/>Gender: Male </p>
+                    ) : values.gender === 'female' ? (
+                        <p> <FontAwesomeIcon icon={faVenus}/>Gender: Female </p>
+                    ) : (
+                        <p> <FontAwesomeIcon icon={faQuestion}/>Gender: Unknown </p>
+                    )}
+                    <p> <FontAwesomeIcon icon={faInfo}/>Bio: {values.bio}</p>
+                    <p> <FontAwesomeIcon icon={faBirthdayCake}/>Age: {values.age}</p>
 
-                <p> <FontAwesomeIcon icon={faAsterisk}/>Game Stats:</p>
+                    <p> <FontAwesomeIcon icon={faArchive}/>Total Number of Arts: {totalArtWork}</p> 
+                    <p> <FontAwesomeIcon icon={faAsterisk}/>Game Stats:</p>
+                    
+                    {game? (
+                        <>
+                            <p>JanKenPon: play {game.JKP.play}, win {game.JKP.win}, lose {game.JKP.lose}, draw {game.JKP.draw}</p>
+                            <p>Monster Killer: play {game.MK.play}, win {game.MK.win}, lose {game.MK.lose}, draw {game.MK.draw}</p>  
+                        </>
+                    ) : (
+                        <>
+                            <p>JanKenPon: play 0, win 0, lose 0, draw 0</p>
+                            <p>Monster Killer: play 0, win 0, lose 0, draw 0</p>
+                        </>
+                    )}
                 
-                {game? (
-                    <>
-                        <p>JanKenPon: play {game.JKP.play}, win {game.JKP.win}, lose {game.JKP.lose}, draw {game.JKP.draw}</p>
-                        <p>Monster Killer: play {game.MK.play}, win {game.MK.win}, lose {game.MK.lose}, draw {game.MK.draw}</p>  
-                    </>
-                ) : (
-                    <>
-                        <p>JanKenPon: play 0, win 0, lose 0, draw 0</p>
-                        <p>Monster Killer: play 0, win 0, lose 0, draw 0</p>
-                    </>
-                )}
-               
 
-                <p> <FontAwesomeIcon icon={faArchive}/>Total Number of Arts: {totalArtWork}</p> 
+                </div>
             </div>
         </div>
     );

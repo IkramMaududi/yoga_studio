@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { MonsterHP, PlayerHP } from './MonsterKillerSupport';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRedo, faSave, faFirstAid, faBug, faGavel, faHammer, faUserNinja } from '@fortawesome/free-solid-svg-icons';
 import './MonsterKiller.css';
+
+library.add( faRedo, faSave, faFirstAid, faBug, faGavel, faHammer, faUserNinja );
+
 
 function KillMonster() {
     // choosen value
@@ -165,26 +171,42 @@ function KillMonster() {
 
 
     return (
-        <div className='play1'>
+        <div id='top' className='fullSize'>
             <div className='health-levels'>
-                <h2 id='health'>MONSTER HEALTH</h2>
+                <h2 id='health'> 
+                    <FontAwesomeIcon icon={faBug}/>MONSTER HEALTH 
+                </h2>
                 <MonsterHP done={health.computer} />
-                <h2 id='health'>PLAYER HEALTH <span id="bonus-life" style={bonusLifeStyle}>1</span> </h2>
+
+                <h2 id='health'> 
+                    <FontAwesomeIcon icon={faUserNinja}/>PLAYER HEALTH 
+                    <span id="bonus-life" style={bonusLifeStyle}>1</span> 
+                </h2>
                 <PlayerHP percentage={health.player} />
             </div>
             <div className="controls">
-                <button className="monsterkiller" onClick={attackHandler}>ATTACK</button>
-                <button className="monsterkiller" onClick={strongAttackHandler}>STRONG ATTACK</button>
-                <button className="monsterkiller" onClick={healPlayerHandler}>HEAL</button>
+                <button className="monsterkiller" onClick={attackHandler}> 
+                    <FontAwesomeIcon icon={faGavel}/>ATTACK 
+                </button>
+                <button className="monsterkiller" onClick={strongAttackHandler}> 
+                    <FontAwesomeIcon icon={faHammer}/>STRONG ATTACK 
+                </button>
+                <button className="monsterkiller" onClick={healPlayerHandler}> 
+                    <FontAwesomeIcon icon={faFirstAid}/>HEAL 
+                </button>
             </div>
             { show ? 
                 (
-                    <div>
+                    <div className='controls'>
                         <p>Your final health: {health.player}</p>
                         <p>Monster final health: {health.computer}</p>
-                        <h1>{message}</h1>
-                        <button onClick={handleSendData}>Save Result</button>
-                        <button onClick={handleReset}>Reset</button>
+                        <h1 style={{color: 'red'}}>{message}</h1>
+                        <button className='monsterkiller' onClick={handleSendData}> 
+                            <FontAwesomeIcon icon={faSave}/>Save Result 
+                        </button>
+                        <button className='monsterkiller' onClick={handleReset}> 
+                            <FontAwesomeIcon icon={faRedo}/>Reset 
+                        </button>
                     </div>
                 ) 
                 : 

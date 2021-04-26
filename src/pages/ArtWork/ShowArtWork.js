@@ -43,7 +43,7 @@ function ShowArtWork() {
                     })}
                 </div>
             ) : (
-                <div>
+                <div className="Portfolio">
                     You have no art work yet
                 </div>
             )}

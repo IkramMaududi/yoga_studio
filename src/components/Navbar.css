@@ -2,25 +2,33 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    text-align: center;
 }
 
 .menu-bar {
-    background: rgb(0, 100, 0);
+    /* background: rgb(0, 100, 0); */
+    background: rgb(16, 141, 16);
     text-align: center;
+    font-family: sans-serif;
+    font-size: 17px;
 }
 
 .menu-bar ul {
-    display: inline-flex;
+    /* display: inline-flex; */
+    display: flex;
+    justify-content: space-evenly;
     list-style: none;
     color: white;
+    width: 100%;
 }
 
 .menu-bar ul li {
-    width: 120px;
-    /* width: auto; */
-    margin: 10px;
+    width: 135px;
+    margin: 12px;
     padding: 8px;
+}
+
+.menu-bar ul .active {
+    margin-right: auto;
 }
 
 .menu-bar ul li .Link {
@@ -29,7 +37,7 @@
 }
 
 .active, .menu-bar ul li:hover {
-    background: #2bab0d;
+    background: #5de73e96;
     border-radius: 3px;
 }
 
@@ -46,9 +54,11 @@
 .menu-bar ul li:hover .sub-menu-1 {
     display: block;
     position: absolute;
-    background: rgb(0, 100, 0);
+    /* background: rgb(0, 100, 0); */
+    background: rgb(16, 141, 16);
     margin-top: 8px;
     margin-left: -8px;
+    z-index: 1;
 }
 
 /* align the 'sub-menu-1' class below 'About-Us' */
@@ -76,9 +86,11 @@
 }
 
 .LogOut {
-    background-color: grey;
-    width: 50px;
+    background-color: rgb(121, 66, 14);
+    width: 110px;
     color: white;
-    font-size: 10px;
+    font-family: sans-serif;
+    font-size: 18px;
+    border-radius: 10px;
 }
 

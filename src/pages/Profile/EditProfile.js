@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-// import validator from 'validator';
 import './EditProfile.css';
 
 function ProfileEdit() {
@@ -17,7 +16,6 @@ function ProfileEdit() {
     };
     const [values, setValues] = useState(NULLVALUE);
     const [avatar, setAvatar] = useState(null);
-    const [profileFilled, setProfileFilled] = useState(false);
 
     //* message for success or error of uploading
     const [message, setMessage] = useState('');
@@ -34,18 +32,12 @@ function ProfileEdit() {
                 }});
                 if (response.data.exist) {
                     console.log('a profile exists, you can update it');
-                    console.log(response.data.data[0])
-                    // // change the state of profile value
+
                     const {fullname, email, phone, age, location, artstyle, gender, bio, avatar} = response.data.data[0];
-                    //TODO: check whether these 2 setState below work properly, especially the avatar
-                    setValues({
-                        fullname, age, email, phone, location, gender, artstyle, bio
-                    });
+                    setValues({ fullname, age, email, phone, location, gender, artstyle, bio });
                     setAvatar(avatar);
-                    setProfileFilled(true);
                 } else {
                     console.log('a profile does not exist, make a new one please');
-                    setProfileFilled(false);
                 };
             } catch (err) {
                 console.error(err);
@@ -54,20 +46,6 @@ function ProfileEdit() {
         getData();
     }, []);
     
-    //* function for data validation & send data to backend 
-    const checkData = () => {
-        // let errorTotal = {};
-
-        //TODO: perform data validation here
-        // const checkFullName = validator.isAlpha(values.fullname);
-        // const checkEmail = validator.isEmail(values.email);
-        // const checkPhone = validator.isMobilePhone(values.phone); 
-        if (values.fullname) {
-            
-        }
-
-
-    };
     const sendData = async () => {
         const username = localStorage.getItem('username');
         const fd = new FormData();
@@ -81,23 +59,24 @@ function ProfileEdit() {
         fd.append('artstyle', values.artstyle);
         fd.append('bio', values.bio);
 
-        const response = await Axios.post(url, fd, {
-            headers: {
-                username,
-                profileFilled
-            }
-        }, {
-            onUploadProgress: ProgressEvent => {
-                console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
-            }
-        });
+        console.log(fd);
+        // const response = await Axios.post(url, fd, {
+        //     headers: {
+        //         username,
+        //         profileFilled
+        //     }
+        // }, {
+        //     onUploadProgress: ProgressEvent => {
+        //         console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
+        //     }
+        // });
 
-        //* showing result of upload
-        if (response.data.editProfile) {
-            setMessage(response.data.message)
-        } else {
-            setMessage('edit profile failed');
-        };
+        // //* showing result of upload
+        // if (response.data.editProfile) {
+        //     setMessage(response.data.message)
+        // } else {
+        //     setMessage('edit profile failed');
+        // };
     };
 
     //* functions for event changes
@@ -108,7 +87,9 @@ function ProfileEdit() {
             [name]: value
         });
     };
-    const fileSelectChange = e => { setAvatar(e.target.files[0]) };
+    const fileSelectChange = e => { 
+        console.log(e.target.files[0])
+        setAvatar(e.target.files[0]) };
     const handleReset = e => {
         e.preventDefault(); 
         setAvatar('');
@@ -116,10 +97,6 @@ function ProfileEdit() {
     };
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(values);
-        console.log(avatar);
-        console.log(values.email, values.phone, values.age);
-        checkData();
         sendData();
     };
 
@@ -172,7 +149,7 @@ function ProfileEdit() {
                     <textarea className="bio" name="bio" placeholder="Tell us a little about yourself" value={values.bio} onChange={handleChange} ></textarea>
 
                     <h2 className="name">Profile Picture</h2>
-                    <input className="form-input" type="file" name="avatar" onChange={fileSelectChange} />
+                    <input className="chooseAvatar" type="file" name="avatar" onChange={fileSelectChange} />
 
                     <div id="box">
                         <button className="button1" type="reset" onClick={handleReset}>Reset</button>

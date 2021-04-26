@@ -1,10 +1,9 @@
 #top {
     margin: 0;
     padding: 0;
-    background-image: url(mountain.jpg);
-    margin-top: 20px;
-    background-position: center;
-    background-size: cover;
+    padding: 20px 0px 20px 0px;
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
     font-family: sans-serif;
 }
 
@@ -22,6 +21,8 @@
     background-color: rgb(0, 0, 0, 0.5);
     width: 800px;
     margin: 0 auto;
+    padding: 1px 0 20px 0;
+    border-radius: 0px 0px 15px 15px;
 }
 
 .form {
@@ -31,18 +32,17 @@
 .name {
     position: relative;
     top: 30px;
-    margin-left: 25px;
+    margin-left: 30px;
     margin-top: 10px;
     width: 125px;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
 }
 
 .form-input {
     position: relative;
-    left: 110px;
-    top: -10px;
+    left: 250px;
     line-height: 30px;
     height: 35px;
     width: 480px;
@@ -53,7 +53,7 @@
 }
 .bio {
     position: relative;
-    left: 110px;
+    left: 250px;
     top: -20px;
     line-height: 30px;
     width: 480px;
@@ -67,11 +67,11 @@
 
 .gender {
     position: relative;
-    left: -90px;
-    top: -10px;
+    left: 250px;
+    top: 5px;
     line-height: 40px;
     width: 125px;
-    height: 40px;
+    height: 35px;
     border-radius: 6px;
     padding: 0 22px;
     font-size: 16px;
@@ -89,7 +89,7 @@
     margin-left: 25px;
     width: 125px;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
 }
 .radio {
     display: inline-block;
@@ -108,14 +108,9 @@
     outline: none;
 }
 .cool {
-    /* background-color: green; */
     position: relative;
     left: 75px;
     top: 20px;
-}
-
-#box {
-    display: flex;
 }
 
 #art {
@@ -123,21 +118,37 @@
     margin-bottom: 25px;
     display: flex;
 } 
+
+#box {
+    display: flex;
+    width: auto;
+    margin-right: 15px;
+}
+
 .button1 {
-    background-color: #3baf9f;
+    background-color: #0a772b;
     display: block;
-    margin: 20px 0px 0px 20px;
-    text-align: center;
+    margin: 20px 0px 15px 20px;
     border-radius: 12px;
     border: 2px solid #366473;
-    padding: 14px 110px;
-    width: 480px;
-    outline: none;
+    width: 100px;
     color: white;
     cursor: pointer;
     transition: 0.25px;
+    font-size: 18px;
 }
 .button1:hover {
     background-color: #5390f5;
 } 
 
+.chooseAvatar {
+    position: relative;
+    left: 250px;
+    top: 5px;
+    line-height: 30px;
+    height: 35px;
+    width: 480px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #555;
+}
