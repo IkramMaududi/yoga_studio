@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 
 import Home from './pages/Home-About/Home';
 import About from './pages/Home-About/About';
+import ContactUs from './pages/Home-About/ContactUs';
 import SignUp from './pages/Credentials/SignUp';
 import SignIn from './pages/Credentials/SignIn';
 
@@ -24,6 +25,7 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/about" component={About} />
+					<Route path="/contactus" component={ContactUs} />
 					<Route path="/signup" component={SignUp} />
 					<Route path="/signin" component={SignIn} />
 					<Route path="/editprofile" component={EditProfile} />

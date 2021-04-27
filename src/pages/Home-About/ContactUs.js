@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Home() {
+function ContactUs() {
     return (
         <div id="top" className="fullSize">
-            This is Your home page
+            show contact us here
         </div>
     );
 };
 
-export default Home;
+export default ContactUs;

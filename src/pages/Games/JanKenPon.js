@@ -117,16 +117,16 @@ function JanKenPon() {
         <div id='top' className='fullSize'>
             <div className='controls'>
                 <button className='monsterkiller' onClick={playerChooseRock}> 
-                    <FontAwesomeIcon icon={faHandRock}/>rock 
+                    <FontAwesomeIcon icon={faHandRock} className="gap"/>rock 
                 </button>
                 <button className='monsterkiller' onClick={playerChoosePaper}>  
-                    <FontAwesomeIcon icon={faHandPaper}/>paper 
+                    <FontAwesomeIcon icon={faHandPaper} className="gap"/>paper 
                 </button>
                 <button className='monsterkiller' onClick={playerChooseScissors}> 
-                    <FontAwesomeIcon icon={faHandScissors}/>scissors 
+                    <FontAwesomeIcon icon={faHandScissors} className="gap"/>scissors 
                 </button>
                 <button className='monsterkiller' onClick={play}> 
-                    <FontAwesomeIcon icon={faPlay}/>play 
+                    <FontAwesomeIcon icon={faPlay} className="gap"/>play 
                 </button>
             </div>
 
@@ -138,10 +138,10 @@ function JanKenPon() {
                         <p>computer's choice: {values.computer}</p>
                         <h1 style={{color: 'red'}}>{message}</h1>
                         <button className='monsterkiller' onClick={handleSendData}> 
-                            <FontAwesomeIcon icon={faSave}/>Save Result 
+                            <FontAwesomeIcon icon={faSave} className="gap"/>Save Result 
                         </button>
                         <button className='monsterkiller' onClick={handleReset}> 
-                            <FontAwesomeIcon icon={faRedo}/>Reset 
+                            <FontAwesomeIcon icon={faRedo} className="gap"/>Reset 
                         </button>
                     </div>
                 ) 

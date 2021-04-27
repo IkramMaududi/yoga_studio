@@ -39,24 +39,34 @@ function SignIn() {
     };
 
     return (
+        // <div className="Credentials">
         <div id="top" className="fullSize">
-            <div className="profile-form">
+            <div className="CredentialsForm">
                 <h1>Sign In</h1>
-            </div>
-            <div className="main">
-                <h2 className="name">Username</h2>
-                <input className="form-input" type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
-
-                <h2 className="name">Password</h2>
-                <input className="form-input" type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
-
-                <div id="box">
-                    <button className="button1" type="Sign Up" onClick={handleSubmit}>Save</button>
-                </div>
-
+                <input type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
+                <input type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
+                <input type="submit" value="Login" onClick={handleSubmit} />
                 <h1 style={{color:"red"}}>{message}</h1>
             </div>
         </div> 
+        // <div id="top" className="fullSize">
+        //     <div className="profile-form">
+        //         <h1>Sign In</h1>
+        //     </div>
+        //     <div className="main">
+        //         <h2 className="name">Username</h2>
+        //         <input className="form-input" type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
+
+        //         <h2 className="name">Password</h2>
+        //         <input className="form-input" type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
+
+        //         <div id="box">
+        //             <button className="button1" type="Sign Up" onClick={handleSubmit}>Save</button>
+        //         </div>
+
+        //         <h1 style={{color:"red"}}>{message}</h1>
+        //     </div>
+        // </div> 
     );
 };
 

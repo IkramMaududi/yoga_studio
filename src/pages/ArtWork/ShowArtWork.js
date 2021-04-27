@@ -43,7 +43,7 @@ function ShowArtWork() {
                     })}
                 </div>
             ) : (
-                <div className="Portfolio">
+                <div id="top" className="fullSize">
                     You have no art work yet
                 </div>
             )}

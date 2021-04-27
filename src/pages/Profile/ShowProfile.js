@@ -4,13 +4,13 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
     faAsterisk, faUser, faQuestion, faArchive, faMars, faVenus, 
-    faInfo, faBirthdayCake, faBriefcase, faHome, faAt, faPhone,
+    faInfo, faBirthdayCake, faBriefcase, faHome, faAt, faPhone, faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import './ShowProfile.css';
 
 library.add(
     faAsterisk, faUser, faQuestion, faArchive, faMars, faVenus, 
-    faInfo, faBirthdayCake, faBriefcase, faHome, faAt, faPhone,
+    faInfo, faBirthdayCake, faBriefcase, faHome, faAt, faPhone, faMapMarkerAlt,
 );
 
 function ShowProfile() {
@@ -151,22 +151,22 @@ function ShowProfile() {
                     </div>
                 </div>
                 <div className="main-container">
-                    <p> <FontAwesomeIcon icon={faBriefcase}/>About Me </p>
-                    <p> <FontAwesomeIcon icon={faHome}/>Location: {values.location}</p>
-                    <p> <FontAwesomeIcon icon={faAt}/>Email: {values.email}</p>
-                    <p> <FontAwesomeIcon icon={faPhone}/>Phone: {values.phone}</p>
+                    <p> <FontAwesomeIcon icon={faBriefcase} className="gap"/>About Me </p>
+                    <p> <FontAwesomeIcon icon={faMapMarkerAlt} className="gap"/>Location: {values.location}</p>
+                    <p> <FontAwesomeIcon icon={faAt} className="gap"/>Email: {values.email}</p>
+                    <p> <FontAwesomeIcon icon={faPhone} className="gap"/>Phone: {values.phone}</p>
                     {values.gender === 'male' ? (
-                        <p> <FontAwesomeIcon icon={faMars}/>Gender: Male </p>
+                        <p> <FontAwesomeIcon icon={faMars} className="gap"/>Gender: Male </p>
                     ) : values.gender === 'female' ? (
-                        <p> <FontAwesomeIcon icon={faVenus}/>Gender: Female </p>
+                        <p> <FontAwesomeIcon icon={faVenus} className="gap"/>Gender: Female </p>
                     ) : (
-                        <p> <FontAwesomeIcon icon={faQuestion}/>Gender: Unknown </p>
+                        <p> <FontAwesomeIcon icon={faQuestion} className="gap"/>Gender: Unknown </p>
                     )}
-                    <p> <FontAwesomeIcon icon={faInfo}/>Bio: {values.bio}</p>
-                    <p> <FontAwesomeIcon icon={faBirthdayCake}/>Age: {values.age}</p>
+                    <p> <FontAwesomeIcon icon={faInfo} className="gap"/>Bio: {values.bio}</p>
+                    <p> <FontAwesomeIcon icon={faBirthdayCake} className="gap"/>Age: {values.age}</p>
 
-                    <p> <FontAwesomeIcon icon={faArchive}/>Total Number of Arts: {totalArtWork}</p> 
-                    <p> <FontAwesomeIcon icon={faAsterisk}/>Game Stats:</p>
+                    <p> <FontAwesomeIcon icon={faArchive} className="gap"/>Total Number of Arts: {totalArtWork}</p> 
+                    <p> <FontAwesomeIcon icon={faAsterisk} className="gap"/>Game Stats:</p>
                     
                     {game? (
                         <>

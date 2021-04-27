@@ -174,25 +174,25 @@ function KillMonster() {
         <div id='top' className='fullSize'>
             <div className='health-levels'>
                 <h2 id='health'> 
-                    <FontAwesomeIcon icon={faBug}/>MONSTER HEALTH 
+                    <FontAwesomeIcon icon={faBug} className="gap"/>MONSTER HEALTH 
                 </h2>
                 <MonsterHP done={health.computer} />
 
                 <h2 id='health'> 
-                    <FontAwesomeIcon icon={faUserNinja}/>PLAYER HEALTH 
+                    <FontAwesomeIcon icon={faUserNinja} className="gap"/>PLAYER HEALTH 
                     <span id="bonus-life" style={bonusLifeStyle}>1</span> 
                 </h2>
                 <PlayerHP percentage={health.player} />
             </div>
             <div className="controls">
                 <button className="monsterkiller" onClick={attackHandler}> 
-                    <FontAwesomeIcon icon={faGavel}/>ATTACK 
+                    <FontAwesomeIcon icon={faGavel} className="gap"/>ATTACK 
                 </button>
                 <button className="monsterkiller" onClick={strongAttackHandler}> 
-                    <FontAwesomeIcon icon={faHammer}/>STRONG ATTACK 
+                    <FontAwesomeIcon icon={faHammer} className="gap"/>STRONG ATTACK 
                 </button>
                 <button className="monsterkiller" onClick={healPlayerHandler}> 
-                    <FontAwesomeIcon icon={faFirstAid}/>HEAL 
+                    <FontAwesomeIcon icon={faFirstAid} className="gap"/>HEAL 
                 </button>
             </div>
             { show ? 
@@ -202,10 +202,10 @@ function KillMonster() {
                         <p>Monster final health: {health.computer}</p>
                         <h1 style={{color: 'red'}}>{message}</h1>
                         <button className='monsterkiller' onClick={handleSendData}> 
-                            <FontAwesomeIcon icon={faSave}/>Save Result 
+                            <FontAwesomeIcon icon={faSave} className="gap"/>Save Result 
                         </button>
                         <button className='monsterkiller' onClick={handleReset}> 
-                            <FontAwesomeIcon icon={faRedo}/>Reset 
+                            <FontAwesomeIcon icon={faRedo} className="gap"/>Reset 
                         </button>
                     </div>
                 ) 
