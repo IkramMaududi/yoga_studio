@@ -3,7 +3,8 @@ import './About.css';
 
 function About() {
     return (
-        <div className="all">
+        <div id="top" className="fullSize">
+        <div className="all"> 
             <div className="about-section">
                 <div className="inner-container">
                     <h1>About Us</h1>
@@ -16,6 +17,7 @@ function About() {
                         <span>Coding</span>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

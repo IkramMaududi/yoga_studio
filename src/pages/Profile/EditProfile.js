@@ -60,23 +60,18 @@ function ProfileEdit() {
         fd.append('bio', values.bio);
 
         console.log(fd);
-        // const response = await Axios.post(url, fd, {
-        //     headers: {
-        //         username,
-        //         profileFilled
-        //     }
-        // }, {
-        //     onUploadProgress: ProgressEvent => {
-        //         console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
-        //     }
-        // });
+        const response = await Axios.post(url, fd, {
+            headers: {
+                username
+            }
+        });
 
-        // //* showing result of upload
-        // if (response.data.editProfile) {
-        //     setMessage(response.data.message)
-        // } else {
-        //     setMessage('edit profile failed');
-        // };
+        //* showing result of upload
+        if (response.data.editProfile) {
+            setMessage(response.data.message)
+        } else {
+            setMessage('edit profile failed');
+        };
     };
 
     //* functions for event changes
@@ -156,8 +151,8 @@ function ProfileEdit() {
                         <button className="button1" type="submit">Save</button>
                     </div>
                 </form>
+                <h1 id="msg">{message}</h1>
             </div>
-            <h1 style={{color:"red"}}>{message}</h1>
         </div>
     );
 };

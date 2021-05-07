@@ -131,7 +131,7 @@ function Navbar() {
                                 <li>
                                     <Link className="Link" to='/signin'>
                                         <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
-                                        Sign in
+                                        Sign In
                                     </Link>
                                 </li>
                             </ul>

@@ -11,9 +11,9 @@
 }
 
 .about-section{
-    background: url(pic.jpg) no-repeat left;
+    background: url(colourful-Software.jpg) no-repeat left;
     background-size: 55%;
-    background-color: #fdfdfd;
+    /* background-color: #fdfdfd; */
     overflow: hidden;
     padding: 100px 0;
 }
@@ -21,7 +21,7 @@
 .inner-container{
     width: 55%;
     float: right;
-    background-color: #fdfdfd;
+    /* background-color: #fdfdfd; */
     padding: 150px;
 }
 

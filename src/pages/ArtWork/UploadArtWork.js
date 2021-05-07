@@ -68,15 +68,17 @@ function UploadArtWork() {
     };
 
     return (
-        <div className="Upload">
-            <h1>Create a Post</h1>
-            <div className="UploadForm">
-                <input type='text' placeholder='Title...' name='title' value={values.title} onChange={handleChange} /> 
-                <input type="text" placeholder='Author..' name='author' value={values.author} onChange={handleChange} />
-                <input type='text' placeholder='Description...' name='description' value={values.description} onChange={handleChange} /> 
-                <input type='file' onChange={fileSelectChange} />
-                <button onClick={handleSubmit}>Upload</button>
-                <h1 style={{color:"red"}}>{message}</h1>
+        <div id="top" className="fullSize">
+            <div className="Upload">
+                <h1>Create a Post</h1>
+                <div className="UploadForm">
+                    <input type='text' placeholder='Title...' name='title' value={values.title} onChange={handleChange} /> 
+                    <input type="text" placeholder='Author..' name='author' value={values.author} onChange={handleChange} />
+                    <textarea name="description" placeholder="Description" value={values.description} onChange={handleChange} ></textarea>
+                    <input type='file' onChange={fileSelectChange} />
+                    <button onClick={handleSubmit}>Upload</button>
+                </div>
+                <h1 id="msg">{message}</h1>
             </div>
         </div>
     );

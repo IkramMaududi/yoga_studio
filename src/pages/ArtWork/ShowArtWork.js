@@ -35,7 +35,7 @@ function ShowArtWork() {
                                     <img src={`data:image/png;base64, ${arrayBufferToBase64(val.image.data)}`} alt="list of images" />
                                 </div>
                                 <div className="Content">
-                                    <div className="title"> {val.title} / by @{val.author}</div>
+                                    <div className="title1"> {val.title} / by @{val.author}</div>
                                     <div className="description">{val.description}</div>
                                 </div>
                             </div>
