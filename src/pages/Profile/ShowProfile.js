@@ -33,9 +33,13 @@ function ShowProfile() {
     useEffect( () => {
         const username = localStorage.getItem('username');
 
-        const urlProfile = 'http://localhost:3001/user/profile';
-        const urlArtWork = 'http://localhost:3001/user/artwork';
-        const urlGame = 'http://localhost:3001/user/game';
+        // const urlProfile = 'http://localhost:3001/user/profile';
+        // const urlArtWork = 'http://localhost:3001/user/artwork';
+        // const urlGame = 'http://localhost:3001/user/game';
+
+        const urlProfile = 'https://cool-art-social-media.herokuapp.com/user/profile';
+        const urlArtWork = 'https://cool-art-social-media.herokuapp.com/user/artwork';
+        const urlGame = 'https://cool-art-social-media.herokuapp.com/user/game';
 
         const getDataProfile = async () => {
             try {

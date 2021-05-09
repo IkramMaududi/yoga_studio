@@ -8,7 +8,8 @@ function SignUp() {
         username: '',
         password: ''
     });
-    const url = 'http://localhost:3001/user/register';
+    // const url = 'http://localhost:3001/user/register';
+    const url = 'https://cool-art-social-media.herokuapp.com/user/register';
 
     // error or successful message
     const [message, setMessage] = useState('');

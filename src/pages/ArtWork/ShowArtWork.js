@@ -6,7 +6,8 @@ function ShowArtWork() {
     //* sent data & get it back from DB
     const [downloads, setDownloads] = useState([]);
     useEffect( () => {
-        const url = 'http://localhost:3001/user/artwork';
+        // const url = 'http://localhost:3001/user/artwork';
+        const url = 'https://cool-art-social-media.herokuapp.com/user/artwork';
         const username = localStorage.getItem('username');
         const getData = async () => {
             await Axios

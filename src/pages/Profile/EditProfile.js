@@ -21,7 +21,8 @@ function ProfileEdit() {
     const [message, setMessage] = useState('');
 
     //* check whether the user has ever filled the profile before
-    const url = 'http://localhost:3001/user/profile';
+    // const url = 'http://localhost:3001/user/profile';
+    const url = 'https://cool-art-social-media.herokuapp.com/user/profile';
     useEffect( () => {
         const username = localStorage.getItem('username');
         const getData = async () => {
@@ -143,7 +144,7 @@ function ProfileEdit() {
                     <h2 className="name">Bio</h2>
                     <textarea className="bio" name="bio" placeholder="Tell us a little about yourself" value={values.bio} onChange={handleChange} ></textarea>
 
-                    <h2 className="name">Profile Picture</h2>
+                    <h2 className="name">Choose Another Picture</h2>
                     <input className="chooseAvatar" type="file" name="avatar" onChange={fileSelectChange} />
 
                     <div id="box">

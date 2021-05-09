@@ -7,7 +7,8 @@ function UploadArtWork() {
     const username = localStorage.getItem('username');
 
     //* data to be sent & its destination
-    const url = 'http://localhost:3001/user/artwork';
+    // const url = 'http://localhost:3001/user/artwork';
+    const url = 'https://cool-art-social-media.herokuapp.com/user/artwork';
     const [values, setValues] = useState({
         title: '',
         author: '',
@@ -18,13 +19,12 @@ function UploadArtWork() {
     //* message for success or error of uploading
     const [message, setMessage] = useState('');
 
-    // these codes below set key-value pairs for to-be-sent data
+    //* these codes below set key-value pairs for to-be-sent data
     const fd = new FormData();
     fd.append('image', selectedFile);
     fd.append('title', values.title);
     fd.append('author', values.author);
     fd.append('description', values.description);
-    // fd.append('username', username)
 
     //* functions for event changes
     const handleChange = e => {
@@ -37,7 +37,7 @@ function UploadArtWork() {
     const fileSelectChange = e => { setSelectedFile(e.target.files[0]) };
     const handleSubmit = async (e) => { 
         e.preventDefault();
-        // codes below are to make api call to backend: uploading files to database
+        //* codes below are to make api call to backend: uploading files to database
         try {
             //* validation for file extension & size
             const imageName = selectedFile.name;
@@ -49,12 +49,14 @@ function UploadArtWork() {
                 headers: {
                     username
                 }
-            }, {
-                onUploadProgress: ProgressEvent => {
-                    console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
-                    console.log(username)
-                }
-            });
+            }
+            // , {
+            //     onUploadProgress: ProgressEvent => {
+            //         console.log('Upload progress: ' + Math.round((ProgressEvent.loaded / ProgressEvent.total)*100) + '%');
+            //         console.log(username)
+            //     }
+            // }
+            );
 
             //* showing result of upload
             if (response.data.uploadArtWork) {

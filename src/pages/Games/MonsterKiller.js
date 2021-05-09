@@ -145,7 +145,8 @@ function KillMonster() {
     // send data to backend to be saved to DB
     const handleSendData = async (e) => {
         // initiate the data to be sent & its destination
-        const url = 'http://localhost:3001/user/game';
+        // const url = 'http://localhost:3001/user/game';
+        const url = 'https://cool-art-social-media.herokuapp.com/user/game';
         const username = localStorage.getItem('username');
         const result = {
             result: message,

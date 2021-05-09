@@ -7,13 +7,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f1f1f1;
 }
 
-.about-section{
+.about-section-1{
     background: url(colourful-Software.jpg) no-repeat left;
     background-size: 55%;
-    /* background-color: #fdfdfd; */
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.about-section-2{
+    background: url(help.jpg) no-repeat left;
+    background-size: 45%;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.about-section-3{
+    background: url(home-pattern.jpg) no-repeat left;
+    background-size: 40%;
     overflow: hidden;
     padding: 100px 0;
 }
@@ -21,7 +33,6 @@
 .inner-container{
     width: 55%;
     float: right;
-    /* background-color: #fdfdfd; */
     padding: 150px;
 }
 
