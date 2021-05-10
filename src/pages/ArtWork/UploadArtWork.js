@@ -65,7 +65,8 @@ function UploadArtWork() {
                 setMessage('Image upload failed');
             };
         } catch (err) {
-            console.error(err);
+            // console.error(err);
+            console.log(err);
         };
     };
 

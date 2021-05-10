@@ -41,7 +41,8 @@ function ProfileEdit() {
                     console.log('a profile does not exist, make a new one please');
                 };
             } catch (err) {
-                console.error(err);
+                // console.error(err);
+                console.log(err);
             };
         };
         getData();

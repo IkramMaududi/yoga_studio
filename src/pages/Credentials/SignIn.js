@@ -35,7 +35,8 @@ function SignIn() {
                 setMessage(response.data.message);
             };
         } catch (err) {
-            console.error(err.message);
+            // console.error(err.message);
+            console.log(err);
         };
     };
 

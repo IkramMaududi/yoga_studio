@@ -167,7 +167,8 @@ function KillMonster() {
             });
             console.log(response)
         } catch (err) {
-            console.error(err.message);
+            // console.error(err.message);
+            console.log(err);
         };};
 
 

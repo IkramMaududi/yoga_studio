@@ -119,6 +119,18 @@ function Navbar() {
                         </Link>
                     </li>
                     <li>
+                        <Link className="Link" to='/signup'>
+                            <FontAwesomeIcon icon={faUserPlus} className="gap"/>
+                            Sign Up
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="Link" to='/signin'>
+                            <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
+                            Sign In
+                        </Link>
+                    </li>
+                    {/* <li>
                         SignUp / SignIn
                         <div className="sub-menu-1">
                             <ul>
@@ -136,7 +148,7 @@ function Navbar() {
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> */}
 
                 </ul>
             )}

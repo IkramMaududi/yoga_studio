@@ -57,7 +57,8 @@ function ShowProfile() {
                     console.log('a profile does not exist');
                 };
             } catch (err) {
-                console.error(err);
+                // console.error(err);
+                console.log(err);
             };
         };
         const getDataArtWork = async () => {
@@ -120,7 +121,8 @@ function ShowProfile() {
                     console.log("game data doesn't exist");
                 };
             } catch (err) {
-                console.error(err);
+                // console.error(err);
+                console.log(err);
             };
         };
 
