@@ -38,12 +38,12 @@ function SignUp() {
         // send data to backend API
         try {
             const response = await Axios.post( url, values );
-            console.log(response.data);
-            // if(response.data.registered) {
-            //     setMessage(response.data.message);
-            // } else {
-            //     setMessage('Registration failed');
-            // };
+            // console.log(response.data);
+            if(response.data.registered) {
+                setMessage(response.data.message);
+            } else {
+                setMessage('Registration failed');
+            };
         } catch (err) {
             console.log(err);
         };
