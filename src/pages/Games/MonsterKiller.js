@@ -92,6 +92,7 @@ function KillMonster() {
         addBonusLife();
         setMessage('');
         setShow(false);
+        setMessageBack('');
     };
 
 
@@ -167,9 +168,7 @@ function KillMonster() {
                 } 
             });
             setMessageBack(response.data.message);
-            // console.log(response)
         } catch (err) {
-            // console.error(err.message);
             console.log(err);
         };};
 

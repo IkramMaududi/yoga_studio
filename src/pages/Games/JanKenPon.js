@@ -84,6 +84,7 @@ function JanKenPon() {
         });
         setMessage("");
         setShow(false);
+        setMessageBack("");
     };
 
     // send data to backend to be saved to DB
