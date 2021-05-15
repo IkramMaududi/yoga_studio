@@ -43,6 +43,7 @@ function KillMonster() {
     // state for showing result
     const [message, setMessage] = useState("");
     const [show, setShow] = useState(false);
+    const [messageBack, setMessageBack] = useState('');
 
     // check win lose condition
     useEffect(() => {
@@ -165,7 +166,8 @@ function KillMonster() {
                     game: 'Monster-Killer' 
                 } 
             });
-            console.log(response)
+            setMessageBack(response.data.message);
+            // console.log(response)
         } catch (err) {
             // console.error(err.message);
             console.log(err);
@@ -209,6 +211,7 @@ function KillMonster() {
                         <button className='monsterkiller' onClick={handleReset}> 
                             <FontAwesomeIcon icon={faRedo} className="gap"/>Reset 
                         </button>
+                        <h1 id="msg">{messageBack}</h1>
                     </div>
                 ) 
                 : 

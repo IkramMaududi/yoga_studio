@@ -44,6 +44,7 @@ function SignUp() {
             } else {
                 setMessage('Registration failed');
             };
+            window.location = '/signin';
         } catch (err) {
             console.log(err);
         };
@@ -52,7 +53,8 @@ function SignUp() {
     return (
         <div id="top" className="fullSize">
             <div className="CredentialsForm">
-                <h1>Cool Art Sign Up</h1>
+                <h1>Cool Art</h1>
+                <h2>Sign Up</h2>
                 <input type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
                 <input type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
                 <input type="submit" value="Sign Up" onClick={handleSubmit} />

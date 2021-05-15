@@ -118,7 +118,7 @@ function Navbar() {
                             <FontAwesomeIcon icon={faPhoneAlt} className="gap"/>Contact Us
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link className="Link" to='/signup'>
                             <FontAwesomeIcon icon={faUserPlus} className="gap"/>
                             Sign Up
@@ -129,8 +129,8 @@ function Navbar() {
                             <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
                             Sign In
                         </Link>
-                    </li>
-                    {/* <li>
+                    </li> */}
+                    <li>
                         SignUp / SignIn
                         <div className="sub-menu-1">
                             <ul>
@@ -148,7 +148,7 @@ function Navbar() {
                                 </li>
                             </ul>
                         </div>
-                    </li> */}
+                    </li>
 
                 </ul>
             )}
