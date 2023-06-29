@@ -35,19 +35,22 @@ function SignUp() {
             return setMessage('Password needs to be 6 characters or more');
         };
 
-        // send data to backend API
-        try {
-            const response = await Axios.post( url, values );
-            // console.log(response.data);
-            if(response.data.registered) {
-                setMessage(response.data.message);
-            } else {
-                setMessage('Registration failed');
-            };
-            window.location = '/signin';
-        } catch (err) {
-            console.log(err);
-        };
+        // // send data to backend API
+        // try {
+        //     const response = await Axios.post( url, values );
+        //     // console.log(response.data);
+        //     if(response.data.registered) {
+        //         setMessage(response.data.message);
+        //     } else {
+        //         setMessage('Registration failed');
+        //     };
+        //     window.location = '/signin';
+        // } catch (err) {
+        //     console.log(err);
+        // };
+
+             window.location = '/signin';
+
     };
 
     return (

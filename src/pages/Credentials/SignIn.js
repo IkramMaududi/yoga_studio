@@ -24,20 +24,26 @@ function SignIn() {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await Axios.post( url, values );
-            if(response.data.loggedIn) {
+
+        // // fetch data from backend API
+        // try {
+        //     const response = await Axios.post( url, values );
+        //     if(response.data.loggedIn) {
+        //         localStorage.setItem('loggedIn', true);
+        //         localStorage.setItem('username', response.data.username); 
+        //         setMessage(response.data.message);
+        //         window.location = '/';
+        //     } else {
+        //         setMessage(response.data.message);
+        //     };
+        // } catch (err) {
+        //     // console.error(err.message);
+        //     console.log(err);
+        // };
+    
                 localStorage.setItem('loggedIn', true);
-                localStorage.setItem('username', response.data.username); 
-                setMessage(response.data.message);
                 window.location = '/';
-            } else {
-                setMessage(response.data.message);
-            };
-        } catch (err) {
-            // console.error(err.message);
-            console.log(err);
-        };
+
     };
 
     return (
