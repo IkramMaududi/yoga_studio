@@ -32,8 +32,8 @@ function App() {
 					<Route path="/showprofile" component={ShowProfile} />
 					<Route path="/monsterkiller" component={MonsterKiller} />
 					<Route path="/jankenpon" component={JanKenPon} />
-					<Route path="/uploadartwork" component={UploadArtWork} />
-					<Route path="/showartwork" component={ShowArtWork} />
+					<Route path="/updateschedule" component={UploadArtWork} />
+					<Route path="/showschedule" component={ShowArtWork} />
 					<Route component={NotFound} />
 				</Switch>
 		</Router>

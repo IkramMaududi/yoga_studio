@@ -27,9 +27,9 @@
     padding: 8px;
 }
 
-.menu-bar ul .active {
+/* .menu-bar ul .active {
     margin-right: auto;
-}
+} */
 
 .menu-bar ul li .Link {
     text-decoration: none;
@@ -37,8 +37,8 @@
 }
 
 .active, .menu-bar ul li:hover {
-    background: #5de73e96;
-    border-radius: 3px;
+    background: #5de73e96 !important;
+    border-radius: 3px !important; 
 }
 
 .menu-bar .fas {

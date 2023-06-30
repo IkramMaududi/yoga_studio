@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -22,6 +22,9 @@ function Navbar() {
         localStorage.clear();
         window.location = '/';
     };    
+
+    // get url location
+    const location = useLocation()
     
     //toggle loggedIn value in local storage
     const [signedIn, setSignedIn] = useState(false);
@@ -34,21 +37,21 @@ function Navbar() {
         <nav className="menu-bar">
             {signedIn ? (
                 <ul>
-                    <li className="active">
+                    <li className={location.pathname === '/' ? "active" : ""}>
                         <Link className="Link" to='/'> 
                             <FontAwesomeIcon icon={faHome} className="gap"/>Home 
                         </Link>
                     </li>
-                    <li>
+                    <li className={['/showprofile', '/editprofile'].includes(location.pathname) ? "active" : ""}>
                         <FontAwesomeIcon icon={faUser} className="gap"/>Profile
                         <div className="sub-menu-1">
                             <ul>
-                                <li>
+                                <li className={location.pathname === '/showprofile' ? "active" : ""}>
                                     <Link className="Link" to='/showprofile'> 
                                         <FontAwesomeIcon icon={faIdCard} className="gap"/>Show Profile 
                                     </Link>
                                 </li>
-                                <li>
+                                <li className={location.pathname === '/editprofile' ? "active" : ""}>
                                     <Link className="Link" to='/editprofile'> 
                                         <FontAwesomeIcon icon={faUserEdit} className="gap"/>Edit Profile 
                                     </Link>
@@ -56,28 +59,28 @@ function Navbar() {
                             </ul> 
                         </div>
                     </li>
-                    <li>
-                        <FontAwesomeIcon icon={faArchive} className="gap"/>Artwork
+                    <li className={['/updateschedule', '/showschedule'].includes(location.pathname) ? "active" : ""}>
+                        <FontAwesomeIcon icon={faArchive} className="gap"/>Schedule
                         <div className="sub-menu-1">
                             <ul>
-                                <li>
-                                    <Link className="Link" to='/uploadartwork'>
-                                        <FontAwesomeIcon icon={faUpload} className="gap"/>Upload Artwork
+                                <li className={location.pathname === '/updateschedule' ? "active" : ""}>
+                                    <Link className="Link" to='/updateschedule'>
+                                        <FontAwesomeIcon icon={faUpload} className="gap"/>Update Schedule
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link className="Link" to='/showartwork'> 
-                                        <FontAwesomeIcon icon={faImages} className="gap"/>Show Artwork 
+                                <li className={location.pathname === '/showschedule' ? "active" : ""}>
+                                    <Link className="Link" to='/showschedule'> 
+                                        <FontAwesomeIcon icon={faImages} className="gap"/>Show Schedule 
                                     </Link>
                                 </li> 
                             </ul>
                         </div>
                     </li>
-                    <li>
+                    <li className={['/monsterkiller', '/jankenpon'].includes(location.pathname) ? "active" : ""}>
                         <FontAwesomeIcon icon={faGamepad} className="gap"/>Game
                         <div className="sub-menu-1">
                             <ul>
-                                <li>
+                                <li className={location.pathname === '/monsterkiller' ? "active" : ""}>
                                     <Link className="Link" to='/monsterkiller'>
                                         <FontAwesomeIcon icon={faBug}/>
                                         <FontAwesomeIcon icon={faExchangeAlt}/>
@@ -85,7 +88,7 @@ function Navbar() {
                                         Monster Killer
                                     </Link>
                                 </li>
-                                <li>
+                                <li className={location.pathname === '/jankenpon' ? "active" : ""}>
                                     <Link className="Link" to='/jankenpon'> 
                                         <FontAwesomeIcon icon={faHandRock}/>
                                         <FontAwesomeIcon icon={faHandPaper}/>
@@ -103,17 +106,17 @@ function Navbar() {
                 </ul>
             ) : (
                 <ul> 
-                    <li className="active">
+                    <li className={location.pathname === '/' ? "active" : ""}>
                         <Link className="Link" to='/'> 
                             <FontAwesomeIcon icon={faHome} className="gap"/>Home 
                         </Link>
                     </li>
-                    <li>
+                    <li className={location.pathname === '/about' ? "active" : ""}>
                         <Link className="Link" to='/about'>
                             <FontAwesomeIcon icon={faInfoCircle} className="gap"/>About
                         </Link>
                     </li>
-                    <li>
+                    <li className={location.pathname === '/contacus' ? "active" : ""}>
                         <Link className="Link" to='/contactus'>
                             <FontAwesomeIcon icon={faPhoneAlt} className="gap"/>Contact Us
                         </Link>
@@ -130,17 +133,17 @@ function Navbar() {
                             Sign In
                         </Link>
                     </li> */}
-                    <li>
+                    <li className={['/signup', '/signin'].includes(location.pathname) ? "active" : ""}>
                         SignUp / SignIn
                         <div className="sub-menu-1">
                             <ul>
-                                <li>
+                                <li className={location.pathname === '/signup' ? "active" : ""}>
                                     <Link className="Link" to='/signup'>
                                         <FontAwesomeIcon icon={faUserPlus} className="gap"/>
                                         Sign Up
                                     </Link>
                                 </li>
-                                <li>
+                                <li className={location.pathname === '/signin' ? "active" : ""}>
                                     <Link className="Link" to='/signin'>
                                         <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
                                         Sign In
