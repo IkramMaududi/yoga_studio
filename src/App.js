@@ -17,6 +17,7 @@ import UploadArtWork from './pages/ArtWork/UploadArtWork';
 import ShowArtWork from './pages/ArtWork/ShowArtWork';
 
 import NotFound from './pages/NotFound/NotFound';
+import Schedule from './pages/Schedule/Schedule';
 
 function App() {
 	return (
@@ -33,7 +34,7 @@ function App() {
 					<Route path="/monsterkiller" component={MonsterKiller} />
 					<Route path="/jankenpon" component={JanKenPon} />
 					<Route path="/updateschedule" component={UploadArtWork} />
-					<Route path="/showschedule" component={ShowArtWork} />
+					<Route path="/showschedule" component={Schedule} />
 					<Route component={NotFound} />
 				</Switch>
 		</Router>
