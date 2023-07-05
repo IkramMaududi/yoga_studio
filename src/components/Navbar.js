@@ -5,15 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
     faHome, faGamepad, faHandRock, faHandScissors, faHandPaper, 
     faBug, faExchangeAlt, faUserNinja, faImages, faIdCard, faUser, faPhoneAlt,
-    faArchive, faUserEdit, faUpload, faSignInAlt, faSignOutAlt, faInfoCircle, faUserPlus 
+    faArchive, faUserEdit, faUpload, faSignInAlt, faSignOutAlt, faInfoCircle, faUserPlus,
+    faCaretDown
 } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
+import Picture2 from '../assets/Picture2.png';
 
 
 library.add( 
     faHome, faGamepad, faHandRock, faHandScissors, faHandPaper, 
     faBug, faExchangeAlt, faUserNinja, faImages, faIdCard, faUser, faPhoneAlt,
-    faArchive, faUserEdit, faUpload, faSignInAlt, faSignOutAlt, faInfoCircle, faUserPlus 
+    faArchive, faUserEdit, faUpload, faSignInAlt, faSignOutAlt, faInfoCircle, faUserPlus,
+    faCaretDown
 );
 
 function Navbar() {
@@ -34,128 +37,149 @@ function Navbar() {
     }, [condition] );
 
     return (
-        <nav className="menu-bar">
-            {signedIn ? (
-                <ul>
-                    <li className={location.pathname === '/' ? "active" : ""}>
-                        <Link className="Link" to='/'> 
-                            <FontAwesomeIcon icon={faHome} className="gap"/>Home 
-                        </Link>
-                    </li>
-                    <li className={['/showprofile', '/editprofile'].includes(location.pathname) ? "active" : ""}>
-                        <FontAwesomeIcon icon={faUser} className="gap"/>Profile
-                        <div className="sub-menu-1">
-                            <ul>
-                                <li className={location.pathname === '/showprofile' ? "active" : ""}>
-                                    <Link className="Link" to='/showprofile'> 
-                                        <FontAwesomeIcon icon={faIdCard} className="gap"/>Show Profile 
-                                    </Link>
-                                </li>
-                                <li className={location.pathname === '/editprofile' ? "active" : ""}>
-                                    <Link className="Link" to='/editprofile'> 
-                                        <FontAwesomeIcon icon={faUserEdit} className="gap"/>Edit Profile 
-                                    </Link>
-                                </li> 
-                            </ul> 
-                        </div>
-                    </li>
-                    <li className={['/updateschedule', '/showschedule'].includes(location.pathname) ? "active" : ""}>
-                        <FontAwesomeIcon icon={faArchive} className="gap"/>Schedule
-                        <div className="sub-menu-1">
-                            <ul>
-                                <li className={location.pathname === '/updateschedule' ? "active" : ""}>
-                                    <Link className="Link" to='/updateschedule'>
-                                        <FontAwesomeIcon icon={faUpload} className="gap"/>Update Schedule
-                                    </Link>
-                                </li>
-                                <li className={location.pathname === '/showschedule' ? "active" : ""}>
-                                    <Link className="Link" to='/showschedule'> 
-                                        <FontAwesomeIcon icon={faImages} className="gap"/>Show Schedule 
-                                    </Link>
-                                </li> 
-                            </ul>
-                        </div>
-                    </li>
-                    <li className={['/monsterkiller', '/jankenpon'].includes(location.pathname) ? "active" : ""}>
-                        <FontAwesomeIcon icon={faGamepad} className="gap"/>Game
-                        <div className="sub-menu-1">
-                            <ul>
-                                <li className={location.pathname === '/monsterkiller' ? "active" : ""}>
-                                    <Link className="Link" to='/monsterkiller'>
-                                        <FontAwesomeIcon icon={faBug}/>
-                                        <FontAwesomeIcon icon={faExchangeAlt}/>
-                                        <FontAwesomeIcon icon={faUserNinja} className="gap"/>
-                                        Monster Killer
-                                    </Link>
-                                </li>
-                                <li className={location.pathname === '/jankenpon' ? "active" : ""}>
-                                    <Link className="Link" to='/jankenpon'> 
-                                        <FontAwesomeIcon icon={faHandRock}/>
-                                        <FontAwesomeIcon icon={faHandPaper}/>
-                                        <FontAwesomeIcon icon={faHandScissors} className="gap"/>
-                                        Jan Ken Pon
-                                    </Link>
-                                </li> 
-                            </ul>
-                        </div>
-                    </li>
-                    <button className="LogOut" onClick={signOut}>
-                       <FontAwesomeIcon icon={faSignOutAlt} className="gap"/>Sign Out
-                    </button>
-                    
-                </ul>
-            ) : (
-                <ul> 
-                    <li className={location.pathname === '/' ? "active" : ""}>
-                        <Link className="Link" to='/'> 
-                            <FontAwesomeIcon icon={faHome} className="gap"/>Home 
-                        </Link>
-                    </li>
-                    <li className={location.pathname === '/about' ? "active" : ""}>
-                        <Link className="Link" to='/about'>
-                            <FontAwesomeIcon icon={faInfoCircle} className="gap"/>About
-                        </Link>
-                    </li>
-                    <li className={location.pathname === '/contacus' ? "active" : ""}>
-                        <Link className="Link" to='/contactus'>
-                            <FontAwesomeIcon icon={faPhoneAlt} className="gap"/>Contact Us
-                        </Link>
-                    </li>
-                    {/* <li>
-                        <Link className="Link" to='/signup'>
-                            <FontAwesomeIcon icon={faUserPlus} className="gap"/>
-                            Sign Up
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="Link" to='/signin'>
-                            <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
-                            Sign In
-                        </Link>
-                    </li> */}
-                    <li className={['/signup', '/signin'].includes(location.pathname) ? "active" : ""}>
-                        SignUp / SignIn
-                        <div className="sub-menu-1">
-                            <ul>
-                                <li className={location.pathname === '/signup' ? "active" : ""}>
-                                    <Link className="Link" to='/signup'>
-                                        <FontAwesomeIcon icon={faUserPlus} className="gap"/>
-                                        Sign Up
-                                    </Link>
-                                </li>
-                                <li className={location.pathname === '/signin' ? "active" : ""}>
-                                    <Link className="Link" to='/signin'>
-                                        <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
-                                        Sign In
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+        <div className='nav-bar'>
+            <div className='banner' onClick={() => {window.location = '/'}}>
+                <img className='logo-image' src={Picture2} alt="logo-image" />
+                <div>Yoga Studio</div>
+            </div>
+            <nav className="menu-bar">
+                {signedIn ? (
+                    <ul>
+                        <li className={location.pathname === '/' ? "active" : ""}>
+                            <Link className="Link" to='/'> 
+                                <FontAwesomeIcon icon={faHome} className="gap"/>Home 
+                            </Link>
+                        </li>
+                        <li className={location.pathname === '/about' ? "active" : ""}>
+                            <Link className="Link" to='/about'>
+                                <FontAwesomeIcon icon={faInfoCircle} className="gap"/>About
+                            </Link>
+                        </li>
+                        {/* <li className={['/showprofile', '/editprofile'].includes(location.pathname) ? "active" : ""}>
+                            <FontAwesomeIcon icon={faUser} className="gap"/>Profile
+                            <div className="sub-menu-1">
+                                <ul>
+                                    <li className={location.pathname === '/showprofile' ? "active" : ""}>
+                                        <Link className="Link" to='/showprofile'> 
+                                            <FontAwesomeIcon icon={faIdCard} className="gap"/>Show Profile 
+                                        </Link>
+                                    </li>
+                                    <li className={location.pathname === '/editprofile' ? "active" : ""}>
+                                        <Link className="Link" to='/editprofile'> 
+                                            <FontAwesomeIcon icon={faUserEdit} className="gap"/>Edit Profile 
+                                        </Link>
+                                    </li> 
+                                </ul> 
+                            </div>
+                        </li> */}
+                        <li className={['/updateschedule', '/showschedule'].includes(location.pathname) ? "active" : ""}>
+                            <FontAwesomeIcon icon={faArchive} className="gap"/>Schedule
+                            <FontAwesomeIcon icon={faCaretDown} className="gap-left"/>
+                            <div className="sub-menu-1">
+                                <ul>
+                                    <li className={location.pathname === '/updateschedule' ? "active" : ""}>
+                                        <Link className="Link" to='/updateschedule'>
+                                            <FontAwesomeIcon icon={faUpload} className="gap"/>Update Schedule
+                                        </Link>
+                                    </li>
+                                    <li className={location.pathname === '/showschedule' ? "active" : ""}>
+                                        <Link className="Link" to='/showschedule'> 
+                                            <FontAwesomeIcon icon={faImages} className="gap"/>Show Schedule 
+                                        </Link>
+                                    </li> 
+                                </ul>
+                            </div>
+                        </li>
+                        {/* <li className={['/monsterkiller', '/jankenpon'].includes(location.pathname) ? "active" : ""}>
+                            <FontAwesomeIcon icon={faGamepad} className="gap"/>Game
+                            <div className="sub-menu-1">
+                                <ul>
+                                    <li className={location.pathname === '/monsterkiller' ? "active" : ""}>
+                                        <Link className="Link" to='/monsterkiller'>
+                                            <FontAwesomeIcon icon={faBug}/>
+                                            <FontAwesomeIcon icon={faExchangeAlt}/>
+                                            <FontAwesomeIcon icon={faUserNinja} className="gap"/>
+                                            Monster Killer
+                                        </Link>
+                                    </li>
+                                    <li className={location.pathname === '/jankenpon' ? "active" : ""}>
+                                        <Link className="Link" to='/jankenpon'> 
+                                            <FontAwesomeIcon icon={faHandRock}/>
+                                            <FontAwesomeIcon icon={faHandPaper}/>
+                                            <FontAwesomeIcon icon={faHandScissors} className="gap"/>
+                                            Jan Ken Pon
+                                        </Link>
+                                    </li> 
+                                </ul>
+                            </div>
+                        </li> */}
+                        <li>
+                            <div onClick={signOut}>
+                            <FontAwesomeIcon icon={faSignOutAlt} className="gap"/>Sign Out
+                            </div>
+                        </li>
+                        
+                    </ul>
+                ) : (
+                    <ul> 
+                        <li className={location.pathname === '/' ? "active" : ""}>
+                            <Link className="Link" to='/'> 
+                                <FontAwesomeIcon icon={faHome} className="gap"/>Home 
+                            </Link>
+                        </li>
+                        <li className={location.pathname === '/about' ? "active" : ""}>
+                            <Link className="Link" to='/about'>
+                                <FontAwesomeIcon icon={faInfoCircle} className="gap"/>About
+                            </Link>
+                        </li>
+                        {/* <li className={location.pathname === '/contacus' ? "active" : ""}>
+                            <Link className="Link" to='/contactus'>
+                                <FontAwesomeIcon icon={faPhoneAlt} className="gap"/>Contact Us
+                            </Link>
+                        </li> */}
+                        <li className={location.pathname === '/showschedule' ? "active" : ""}>
+                            <Link className="Link" to='/showschedule'> 
+                                <FontAwesomeIcon icon={faImages} className="gap"/>Show Schedule 
+                            </Link>
+                        </li> 
+                        {/* <li>
+                            <Link className="Link" to='/signup'>
+                                <FontAwesomeIcon icon={faUserPlus} className="gap"/>
+                                Sign Up
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="Link" to='/signin'>
+                                <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
+                                Sign In
+                            </Link>
+                        </li> */}
+                        <li className={['/signup', '/signin'].includes(location.pathname) ? "active" : ""}>
+                            <FontAwesomeIcon icon={faUser} className="gap"/>
+                            SignUp / SignIn
+                            <FontAwesomeIcon icon={faCaretDown} className="gap-left"/>
+                            <div className="sub-menu-1">
+                                <ul>
+                                    <li className={location.pathname === '/signup' ? "active" : ""}>
+                                        <Link className="Link" to='/signup'>
+                                            <FontAwesomeIcon icon={faUserPlus} className="gap"/>
+                                            Sign Up
+                                        </Link>
+                                    </li>
+                                    <li className={location.pathname === '/signin' ? "active" : ""}>
+                                        <Link className="Link" to='/signin'>
+                                            <FontAwesomeIcon icon={faSignInAlt} className="gap"/>
+                                            Sign In
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
 
-                </ul>
-            )}
-        </nav>
+                    </ul>
+                )}
+            </nav>
+        </div>
     );
 };
 
