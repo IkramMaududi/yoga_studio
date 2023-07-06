@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
-import Home from './pages/Home-About/Home';
-import About from './pages/Home-About/About';
-import ContactUs from './pages/Home-About/ContactUs';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
 import SignUp from './pages/Credentials/SignUp';
 import SignIn from './pages/Credentials/SignIn';
 
@@ -14,7 +13,6 @@ import ShowProfile from './pages/Profile/ShowProfile';
 import EditProfile from './pages/Profile/EditProfile';
 
 import UploadArtWork from './pages/ArtWork/UploadArtWork';
-import ShowArtWork from './pages/ArtWork/ShowArtWork';
 
 import NotFound from './pages/NotFound/NotFound';
 import Schedule from './pages/Schedule/Schedule';
@@ -26,7 +24,6 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/about" component={About} />
-					<Route path="/contactus" component={ContactUs} />
 					<Route path="/signup" component={SignUp} />
 					<Route path="/signin" component={SignIn} />
 					<Route path="/editprofile" component={EditProfile} />
