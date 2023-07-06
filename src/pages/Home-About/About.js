@@ -12,9 +12,8 @@ function About() {
                             First and foremost, Yoga Studio teachers are passionate about yoga. They have all benefitted first-hand from regular yoga practices and are eager to share what they have learned. They come from around the world. We are committed to the on-going development and education of our teachers, and hold regular workshops and in-house training. 
                         </p>
                         <div className="skills">
-                            <span>Web Design</span>
-                            <span>Photoshop & Illustrator</span>
-                            <span>Coding</span>
+                            <span>Teacher List</span>
+                            <span path="/showschedule">Schedule</span>
                        </div>
                     </div>
                 </div>
