@@ -9,8 +9,6 @@ import {
     faCaretDown
 } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
-import Picture2 from '../assets/Picture2.png';
-
 
 library.add( 
     faHome, faGamepad, faHandRock, faHandScissors, faHandPaper, 
@@ -38,11 +36,10 @@ function Navbar() {
 
     return (
         <div className='nav-bar'>
-            <div className='banner' onClick={() => {window.location = '/'}}>
-                <img className='logo-image' src={Picture2} alt="logo-image" />
-                <div>Yoga Studio</div>
-            </div>
             <nav className="menu-bar">
+                <div className='banner' onClick={() => {window.location = '/'}}>
+                    <div>Yoga Studio</div>
+                </div>
                 {signedIn ? (
                     <ul>
                         <li className={location.pathname === '/' ? "active" : ""}>

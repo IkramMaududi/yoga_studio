@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
@@ -34,6 +35,7 @@ function App() {
 					<Route path="/showschedule" component={Schedule} />
 					<Route component={NotFound} />
 				</Switch>
+				<Footer />
 		</Router>
 	);
 };
