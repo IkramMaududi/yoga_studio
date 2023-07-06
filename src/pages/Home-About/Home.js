@@ -9,7 +9,7 @@ function Home() {
                     <div className="inner-container">
                         <h1>Home</h1>
                         <p className="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates. 
+                            This is the website for yoga studio to check with the schedule. 
                         </p>
                         {/* <div className="skills">
                             <span>Contact Support Team</span>
