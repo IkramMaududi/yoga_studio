@@ -13,7 +13,10 @@ function About() {
                         </p>
                         <div className="skills">
                             <span>Teacher List</span>
-                            <span path="/showschedule">Schedule</span>
+                            <span>
+                                Schedule
+                                <Route path="/showschedule" component={Schedule} />
+                            </span>
                        </div>
                     </div>
                 </div>
