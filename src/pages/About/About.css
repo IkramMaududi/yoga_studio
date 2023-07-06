@@ -130,3 +130,25 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media (max-width: 768px) {
+    .why-choose-us {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .reasons {
+        margin-right: 0;
+    }
+
+    .yoga-image img {
+      width: 0;
+      height: 0;
+    }
+  
+    .team-members {
+      grid-template-columns: auto;
+      margin: auto;
+      padding: 10px;
+    }
+  }
