@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
+import './Schedule.css'
+
 const Schedule = () => {
   const [schedules, setSchedules] = useState([
     { id: 1, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
@@ -29,7 +31,7 @@ const Schedule = () => {
 
   const ScheduleCard = ({ schedule }) => (
     <Grid item xs={12} sm={6} md={4} lg={3}>
-      <Card variant="outlined" style={{ marginBottom: '10px' }}>
+      <Card variant="outlined" className="schedule-card">
         <CardContent>
           <Typography variant="h6" component="div">
             Date: {schedule.date}
@@ -54,7 +56,7 @@ const Schedule = () => {
   );
 
   return (
-    <div style={{ margin: '20px' }}>
+    <div className="schedule-page">
       <Grid container spacing={2}>
         {schedules.map((schedule) => (
           <ScheduleCard key={schedule.id} schedule={schedule} />

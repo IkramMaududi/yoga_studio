@@ -1,0 +1,14 @@
+.schedule-page {
+    margin: 20px;
+}
+
+.schedule-card {
+    margin-bottom: 10px;
+}
+
+.schedule-ctas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}

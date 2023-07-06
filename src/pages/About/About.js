@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
+import { Grid } from '@mui/material';
 
 import './About.css';
 import yogaImage from '../../assets/yoga-image.jpg';
@@ -28,7 +29,7 @@ class About extends React.Component {
       ];
 
     return (
-      <div className="About">
+      <div className="about-page">
         <section className="why-choose-us">
             <div className="reasons">
                 <h2>Why Choose Us</h2>
@@ -50,18 +51,20 @@ class About extends React.Component {
         </section>
         <section className="our-team">
           <h2>Our Team</h2>
-          <div className="team-members">
-            {teamMembers.map((member, index) => (
-                <div className="member" key={index}>
-                    <img src={member.image} alt={member.name} />
-                    <div className="member-info">
-                        <h3>{member.name}</h3>
-                        <p>{member.role}</p>
-                        <p>{member.email}</p>
-                    </div>
-                </div>
-            ))}
-          </div>
+            <Grid container spacing={2} className="team-members">
+              {teamMembers.map((member, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={4}>
+                  <div className="member" key={index}>
+                      <img src={member.image} alt={member.name} />
+                      <div className="member-info">
+                          <h3>{member.name}</h3>
+                          <p>{member.role}</p>
+                          <p>{member.email}</p>
+                      </div>
+                  </div>
+              </Grid>
+              ))}
+            </Grid>
         </section>
       </div>
     );

@@ -1,4 +1,4 @@
-.About {
+.about-page {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -85,18 +85,14 @@
 }
 
 .our-team h2 {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    padding: 20px;
     text-align: center;
 }
 
 .team-members {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
     justify-items: center;
-    align-items: start;
-    margin: 20px;
+    padding: 20px;
+    overflow: hidden;
 }  
 
 .member {
@@ -112,7 +108,6 @@
 .member img {
     width: 80px;
     height: 80px;
-    overflow: hidden;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -145,10 +140,21 @@
       width: 0;
       height: 0;
     }
-  
-    .team-members {
-      grid-template-columns: auto;
-      margin: auto;
-      padding: 10px;
+
+    .member {
+        padding: 10px;
     }
-  }
+
+    .member img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .member-info h3 {
+        font-size: 14px;
+    }
+
+    .member-info p {
+        font-size: 10px;
+    }
+}
