@@ -7,9 +7,9 @@ function About() {
             <div className="all"> 
                 <div className="about-section-1">
                     <div className="inner-container">
-                        <h1>About Us</h1>
+                        <h1>Meet Our Teachers</h1>
                         <p className="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates. 
+                            First and foremost, Yoga Studio teachers are passionate about yoga. They have all benefitted first-hand from regular yoga practices and are eager to share what they have learned. They come from around the world. We are committed to the on-going development and education of our teachers, and hold regular workshops and in-house training. 
                         </p>
                         <div className="skills">
                             <span>Web Design</span>
