@@ -6,7 +6,9 @@ function SignUp() {
     // data to be sent & its destination
     const [values, setValues] = useState({
         username: '',
-        password: ''
+        password: '',
+        confirmPassword: '',
+        email: '',
     });
     // const url = 'http://localhost:3001/user/register';
     const url = 'https://cool-art-social-media.herokuapp.com/user/register';
@@ -56,10 +58,12 @@ function SignUp() {
     return (
         <div id="top" className="fullSize">
             <div className="CredentialsForm">
-                <h1>Cool Art</h1>
+                <h1>Yoga Studio</h1>
                 <h2>Sign Up</h2>
                 <input type='text' placeholder='Username' name='username' value={values.username} onChange={handleChange} />
                 <input type='password' placeholder='Password' name='password' value={values.password} onChange={handleChange} />
+                <input type='password' placeholder='Confirm Password' name='confirmPassword' value={values.confirmPassword} onChange={handleChange} />
+                <input type='text' placeholder='Email' name='email' value={values.email} onChange={handleChange} />
                 <input type="submit" value="Sign Up" onClick={handleSubmit} />
                 <h1 id="msg">{message}</h1>
             </div>

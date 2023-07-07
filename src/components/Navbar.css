@@ -18,7 +18,7 @@
     text-align: center;
     font-family: sans-serif;
     font-size: 17px;
-    width: -webkit-fill-available;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -146,7 +146,7 @@
 }
 
 .title-banner {
-    width: -webkit-fill-available;
+    width: 100%;
     text-align: center;
     margin-right: 10%;
 }

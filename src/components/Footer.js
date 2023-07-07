@@ -1,7 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
 import './Footer.css';
 
 function Footer() {
@@ -29,7 +26,7 @@ function Footer() {
                     <div class="col">
                         <h4 class="footer-feature-title">Contact Us</h4>
                         <ul class="footer-feature-list">
-                            <li>info@yoga-studio.com</li>
+                            <li>info@yogastudio.com</li>
                             <li>Yoga Studio Address No. xx</li>
                         </ul>
                     </div>
