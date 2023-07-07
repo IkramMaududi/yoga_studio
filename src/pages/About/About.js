@@ -5,11 +5,11 @@ import { Grid } from '@mui/material';
 import './About.css';
 import yogaImage from '../../assets/yoga-image.jpg';
 import member1Image from '../../assets/member1.jpg';
-import member2Image from '../../assets/member2.jpg';
+import member2Image from '../../assets/member2.jpeg';
 import member3Image from '../../assets/member3.jpg';
 import member4Image from '../../assets/member4.jpg';
-import member5Image from '../../assets/member5.jpg';
-import member6Image from '../../assets/member6.jpg';
+import member5Image from '../../assets/member5.jpeg';
+import member6Image from '../../assets/member6.jpeg';
 
 class About extends React.Component {
   render() {
