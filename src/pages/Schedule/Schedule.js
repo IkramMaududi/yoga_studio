@@ -4,10 +4,25 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-
-import './Schedule.css'
+import Axios from 'axios';
+import './Schedule.css';
 
 const Schedule = () => {
+
+  const url_school = 'https://r4h536i023.execute-api.us-east-1.amazonaws.com/development/school';
+  const url_users = 'https://r4h536i023.execute-api.us-east-1.amazonaws.com/development/users';
+
+  const getSchedule = async () => {
+    try {
+      const schoolSchedule = await Axios.get(url_school);
+      console.log(schoolSchedule.data);
+      const usersSchedule = await Axios.get(url_users);
+      console.log(usersSchedule.data);
+    } catch (error) {
+      console.log(error);
+    };
+  };
+
   const [schedules, setSchedules] = useState([
     { id: 1, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
     { id: 2, date: '2023-07-06', classType: 'Pilates', instructor: 'Kate' },
@@ -20,6 +35,7 @@ const Schedule = () => {
     { id: 9, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
     { id: 10, date: '2023-07-06', classType: 'Pilates', instructor: 'Kate' },
   ]);
+
 
   const handleEdit = (id) => {
     console.log(`Editing schedule with ID: ${id}`);
