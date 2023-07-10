@@ -4,19 +4,23 @@ import './UploadArtWork.css';
 
 function UploadArtWork() {
     // get credentials
-    const username = localStorage.getItem('username');
+    // const username = localStorage.getItem('username');
 
     //* data to be sent & its destination
     const url = 'https://r4h536i023.execute-api.us-east-1.amazonaws.com/development/users';
+
+    //* data to be sent to DB
     const [values, setValues] = useState({
         name: '',
         class: '',
         instructor: '',
         date: ''
     });
-
     //* message for success or error of uploading
     const [message, setMessage] = useState('');
+    //* submission button function
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
 
     //* functions for event changes
     const handleChange = e => {
@@ -35,34 +39,53 @@ function UploadArtWork() {
                 ...values,
                 [name]: value
             });
-        }
+        };
     };
+
 
     const handleSubmit = async (e) => { 
         e.preventDefault();
 
-        // data to be sent
-        const data = {
-            'name': values.name,
-            'class': values.class,
-            'instructor': values.instructor,
-            'date': values.date
-        };
+        if (values.name && values.class && values.instructor && values.date) {
+            // Prevent multiple submissions
+            if (isSubmitting) return; 
 
-        try {
-            //send data to backend API
-            const response = await Axios.post(url, data);
-            console.log(response.data);
+            // data to be sent
+            const data = {
+                'name': values.name,
+                'class': values.class,
+                'instructor': values.instructor,
+                'date': values.date
+            };
 
-            // // //* showing result of upload
-            // if (response.data.uploadArtWork) {
-            //     setMessage(response.data.message)
-            // } else {
-            //     setMessage('booking failed');
-            // };
-        } catch (err) {
-            // console.error(err);
-            console.log(err);
+            try {
+                //send data to backend API
+                const response = await Axios.post(url, data);
+                console.log(response.data);
+
+                //* showing result of upload
+                if (response.data) {
+                    setMessage(response.data.message);
+                } else {
+                    setMessage('booking failed');
+                };
+
+                setValues({
+                    name: '',
+                    class: '',
+                    instructor: '',
+                    date: ''
+                });
+                setIsSubmitting(true);
+
+            } catch (err) {
+                // console.error(err);
+                console.log(err);
+            } finally {
+                setIsSubmitting(false);
+            };
+        } else {
+            setMessage('data must not be empty');
         };
     };
 
@@ -75,7 +98,9 @@ function UploadArtWork() {
                     <input type="text" placeholder='Class..' name='class' value={values.class} onChange={handleChange} />
                     <input type="text" placeholder='Instructor Name..' name='instructor' value={values.instructor} onChange={handleChange} />
                     <input type="date" id='dateInput' name='date' value={values.date} onChange={handleChange} />
-                    <button onClick={handleSubmit}>Submit</button>
+                    <button onClick={handleSubmit} disabled={isSubmitting}>
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
+                    </button>
                 </div>
                 <h1 id="msg">{message}</h1>
             </div>
@@ -83,4 +108,4 @@ function UploadArtWork() {
     );
 };
 
-export default UploadArtWork; 
+export default UploadArtWork;

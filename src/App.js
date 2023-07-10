@@ -33,7 +33,7 @@ function App() {
 					<Route path="/jankenpon" component={JanKenPon} />
 					<Route path="/updateschedule" component={UploadArtWork} />
 					<Route path="/showschedule" component={Schedule} />
-					<Route component={NotFound} />
+					<Route path="*" component={NotFound} />
 				</Switch>
 				<Footer />
 		</Router>
