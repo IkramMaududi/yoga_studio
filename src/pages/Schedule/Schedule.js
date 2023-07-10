@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -18,31 +18,28 @@ const Schedule = () => {
       console.log(schoolSchedule.data);
       const usersSchedule = await Axios.get(url_users);
       console.log(usersSchedule.data);
+
+      // Set the retrieved schedules to the state
+      setSchedules([...schoolSchedule.data, ...usersSchedule.data]);
     } catch (error) {
       console.log(error);
     };
   };
 
-  const [schedules, setSchedules] = useState([
-    { id: 1, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
-    { id: 2, date: '2023-07-06', classType: 'Pilates', instructor: 'Kate' },
-    { id: 3, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
-    { id: 4, date: '2023-07-06', classType: 'Pilates', instructor: 'Kate' },
-    { id: 5, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
-    { id: 6, date: '2023-07-06', classType: 'Pilates', instructor: 'Kate' },
-    { id: 7, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
-    { id: 8, date: '2023-07-06', classType: 'Pilates', instructor: 'Kate' },
-    { id: 9, date: '2023-07-05', classType: 'Yoga', instructor: 'Brian' },
-    { id: 10, date: '2023-07-06', classType: 'Pilates', instructor: 'Kate' },
-  ]);
+
+  const [schedules, setSchedules] = useState([]);
+
+  useEffect(() => {
+    getSchedule();
+  }, []); // Run the effect only once, after the initial render
 
 
-  const handleEdit = (id) => {
-    console.log(`Editing schedule with ID: ${id}`);
+  const handleEdit = (uuid) => {
+    console.log(`Editing schedule with ID: ${uuid}`);
   };
 
-  const handleDelete = (id) => {
-    console.log(`Deleting schedule with ID: ${id}`);
+  const handleDelete = (uuid) => {
+    console.log(`Deleting schedule with ID: ${uuid}`);
   };
 
   const ScheduleCard = ({ schedule }) => (
@@ -53,16 +50,16 @@ const Schedule = () => {
             Date: {schedule.date}
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Class Type: {schedule.classType}
+            Class Type: {schedule.class}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Instructor: {schedule.instructor}
           </Typography>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
-            <Button onClick={() => handleEdit(schedule.id)} variant="contained" style={{ backgroundColor: '#3f51b5', color: 'white', marginRight: '10px', boxShadow: 'none' }}>
+            <Button onClick={() => handleEdit(schedule.uuid)} variant="contained" style={{ backgroundColor: '#3f51b5', color: 'white', marginRight: '10px', boxShadow: 'none' }}>
               Edit
             </Button>
-            <Button onClick={() => handleDelete(schedule.id)} variant="outlined" style={{ borderColor: '#f44336', color: '#f44336', backgroundColor: 'transparent' }}>
+            <Button onClick={() => handleDelete(schedule.uuid)} variant="outlined" style={{ borderColor: '#f44336', color: '#f44336', backgroundColor: 'transparent' }}>
               Delete
             </Button>
           </div>
