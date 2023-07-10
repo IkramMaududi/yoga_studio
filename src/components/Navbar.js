@@ -81,7 +81,7 @@ function Navbar() {
                                     </li>
                                     <li className={location.pathname === '/showschedule' ? "active" : ""}>
                                         <Link className="Link" to='/showschedule'> 
-                                            <FontAwesomeIcon icon={faImages} className="gap"/>Show Schedule 
+                                            <FontAwesomeIcon icon={faImages} className="gap"/>View Schedule 
                                         </Link>
                                     </li> 
                                 </ul>
@@ -136,7 +136,7 @@ function Navbar() {
                         </li> */}
                         <li className={location.pathname === '/showschedule' ? "active" : ""}>
                             <Link className="Link" to='/showschedule'> 
-                                <FontAwesomeIcon icon={faImages} className="gap"/>Show Schedule 
+                                <FontAwesomeIcon icon={faImages} className="gap"/>View Schedule 
                             </Link>
                         </li> 
                         {/* <li>

@@ -8,7 +8,7 @@ function Footer() {
             <div className='footer-menu'>
                 <div class="footer-identity">
                     <h4><a href="/" class="nav-logo">Yoga Studio</a></h4>
-                    <p class="footer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="footer-description">Step into serenity, where minds find balance and bodies align, at our peaceful yoga studio. Embrace tranquility as you journey within, breathing life into every pose, at our sacred haven of yoga and self-discovery. Discover the transformative power of breath and movement in our welcoming yoga sanctuary, where harmony unfolds with every pose.</p>
                 </div>
                 <div class="footer-feature">
                     <div class="col">

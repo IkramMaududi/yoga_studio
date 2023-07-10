@@ -90,7 +90,7 @@
 
 /* style the list of 'About-Us' */
 .menu-bar ul li:hover .sub-menu-1 ul li {
-    width: 100px;
+    /* width: 100px; */
     padding: 8px;
     border-bottom: 1px dotted #fff;
     background: transparent;

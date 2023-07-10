@@ -37,6 +37,13 @@ function SignUp() {
             return setMessage('Password needs to be 6 characters or more');
         };
 
+        // email validation
+        if (!values.email) {
+            return setMessage('Email is required');
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+            return setMessage('Invalid email address');
+        }
+
         // // send data to backend API
         // try {
         //     const response = await Axios.post( url, values );
