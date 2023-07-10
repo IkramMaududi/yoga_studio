@@ -1,22 +1,18 @@
-# Cool-Art-Social-Media-Client
+# Modern Yoga Studio
 
-
-### This is all codes for the front-end part of my Cool-Art social media, my own version of social media
+### This is all codes for the front-end part of Modern Yoga Studio
 <br> 
 
-### You can: 
-    * create your account 
-    * showcase your artwork
-    * edit your profile 
-    * play a little games in it
-
-### This is made using reactJS and it's current environment
+### Introduction
+A Modern Yoga Studio web created using reactJS. Designed with the user functionality in mind, the focus is placed on providing a responsive and accessible website.
 <br>
 
-### It makes calls to server, which code's are shown on my other repository: 
-**[Cool-Art-Social-Media-Server](https://github.com/IkramMaududi/cool-art-social-media-server)**
-
-<br> <br>
+### Pages: 
+    * Home 
+    * About Us
+    * View/Update Schedule 
+    * Sign Up / Sign In
+<br>
 
 ## Here is the Live version 
-I employ it using free netlify account **[Cool-Art](https://nostalgic-snyder-535bbf.netlify.app)**.<br>
+Deployed using AWS Amplify **[Modern Yoga Studio](https://onlytrying.d2g28lr8kuw9bw.amplifyapp.com/)**.<br>
