@@ -12,6 +12,10 @@ const Schedule = () => {
   const url_school = 'https://r4h536i023.execute-api.us-east-1.amazonaws.com/development/school';
   const url_users = 'https://r4h536i023.execute-api.us-east-1.amazonaws.com/development/users';
 
+  
+  //check loggedIn value in local storage
+  const isLoggedIn = localStorage.getItem('loggedIn');
+
   const getSchedule = async () => {
     try {
       const schoolSchedule = await Axios.get(url_school);
@@ -55,14 +59,16 @@ const Schedule = () => {
           <Typography variant="body2" color="text.secondary">
             Instructor: {schedule.instructor}
           </Typography>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
-            <Button onClick={() => handleEdit(schedule.uuid)} variant="contained" style={{ backgroundColor: '#3f51b5', color: 'white', marginRight: '10px', boxShadow: 'none' }}>
-              Edit
-            </Button>
-            <Button onClick={() => handleDelete(schedule.uuid)} variant="outlined" style={{ borderColor: '#f44336', color: '#f44336', backgroundColor: 'transparent' }}>
-              Delete
-            </Button>
-          </div>
+          {isLoggedIn && 
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
+              <Button onClick={() => handleEdit(schedule.uuid)} variant="contained" style={{ backgroundColor: '#3f51b5', color: 'white', marginRight: '10px', boxShadow: 'none' }}>
+                Edit
+              </Button>
+              <Button onClick={() => handleDelete(schedule.uuid)} variant="outlined" style={{ borderColor: '#f44336', color: '#f44336', backgroundColor: 'transparent' }}>
+                Delete
+              </Button>
+            </div>
+          }
         </CardContent>
       </Card>
     </Grid>
