@@ -10,6 +10,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 
+import logoImage from '../assets/logo.png';
+
 library.add( 
     faHome, faGamepad, faHandRock, faHandScissors, faHandPaper, 
     faBug, faExchangeAlt, faUserNinja, faImages, faIdCard, faUser, faPhoneAlt,
@@ -38,6 +40,7 @@ function Navbar() {
         <div className='nav-bar'>
             <nav className="menu-bar">
                 <div className='banner' onClick={() => {window.location = '/'}}>
+                    <img className='logo-image' src={logoImage} alt="logoImage" />
                     <div>Yoga Studio</div>
                 </div>
                 {signedIn ? (
