@@ -79,12 +79,12 @@ function Navbar() {
                                 <ul>
                                     <li className={location.pathname === '/updateschedule' ? "active" : ""}>
                                         <Link className="Link" to='/updateschedule'>
-                                            <FontAwesomeIcon icon={faUpload} className="gap"/>Update Schedule
+                                            <FontAwesomeIcon icon={faUpload} className="gap"/>Book a Class
                                         </Link>
                                     </li>
                                     <li className={location.pathname === '/showschedule' ? "active" : ""}>
                                         <Link className="Link" to='/showschedule'> 
-                                            <FontAwesomeIcon icon={faImages} className="gap"/>View Schedule 
+                                            <FontAwesomeIcon icon={faImages} className="gap"/>View Classes
                                         </Link>
                                     </li> 
                                 </ul>
@@ -139,7 +139,7 @@ function Navbar() {
                         </li> */}
                         <li className={location.pathname === '/showschedule' ? "active" : ""}>
                             <Link className="Link" to='/showschedule'> 
-                                <FontAwesomeIcon icon={faImages} className="gap"/>View Schedule 
+                                <FontAwesomeIcon icon={faImages} className="gap"/>View Classes
                             </Link>
                         </li> 
                         {/* <li>
